@@ -2,7 +2,7 @@
 
 **Document Type:** Knowledge Article  
 **Author:** Will Chang  
-**Audience:** Personal Portfolio / Interview Reference  
+**Audience:** Knowledge Growth  
 **Last Updated:** May 2026  
 
 ---

@@ -2,7 +2,7 @@
 
 **Document Type:** Company Intelligence / Portfolio Research  
 **Author:** Will Chang  
-**Audience:** Personal Reference — Job Search & Network Strategy  
+**Audience:** Knowledge Growth  
 **Last Updated:** May 2026  
 **Official Reference:** https://artemissecurity.com  
 

@@ -100,13 +100,41 @@ These domains all need governance — and none of them are solved by code scanni
 
 ## Artemis Security — Agentic Security in Practice
 
-Artemis (Series A) builds their entire platform with AI agents writing every line of code. Human engineers set constraints and review outputs — Claude implements.
+Artemis (Series A, $70M) builds their entire platform with AI agents writing every line of code. Human engineers set constraints and review outputs — Claude implements.
 
 Design thesis: **humans should bar-raise and direct, not make every individual security decision.**
 
 > "You can't bolt intelligence onto static infrastructure. We started over."
 
 Anthropic published a case study on how Artemis uses Claude as a core engineering collaborator.
+
+### Tailscale × Artemis: Complementary Layers
+
+Tailscale and Artemis don't compete — they operate at different layers of the stack and complement each other directly:
+
+| Layer | Who Owns It | What It Does |
+|---|---|---|
+| Network access control | Tailscale | Gates what identities and agents can reach — enforces connectivity policy |
+| Behavioral detection | Artemis | Watches what happens after the connection — correlates signals into attack narratives |
+
+**The integration story:**
+- Tailscale generates structured network telemetry: node auth events, ACL matches, connection attempts, device activity
+- Artemis's federated query architecture ingests that telemetry alongside identity, cloud, and endpoint signals
+- Together they close the loop: Tailscale controls access, Artemis detects anomalies in how that access is used
+
+**Shared customer base:** Mercury, Wix, Lemonade, Abnormal AI — all Artemis customers, all the type of modern SaaS companies that run Tailscale for zero trust networking.
+
+---
+
+## The Mythos Context: Why This All Matters Now
+
+In November 2025, Anthropic detected and disrupted a real-world AI-assisted cyber espionage campaign where suspected state-sponsored actors used a jailbroken Claude Code to conduct 80–90% of the operation autonomously — reconnaissance, privilege escalation, lateral movement, credential theft, and data exfiltration across ~30 global organizations.
+
+In April 2026, Anthropic announced Claude Mythos Preview — a frontier model capable of autonomously finding and exploiting zero-day vulnerabilities across every major OS and browser, at a level no prior model approached.
+
+> This is the attack environment Artemis was built to detect. This is why agentic IAM governance is urgent, not theoretical.
+
+See: `mythos-project-glasswing.md` in this folder for the full breakdown.
 
 ---
 
@@ -117,6 +145,8 @@ Anthropic published a case study on how Artemis uses Claude as a core engineerin
 - **Kill switches and HITL controls** are non-negotiable — autonomous agents need human override capability
 - **Agentic AI doesn't replace security** — code scanning is one slice; identity, network, cloud, and incident response still need humans and dedicated tooling
 - **Okta's approach** treats agents as a natural extension of IAM — same platform, new identity type
+- **Tailscale + Artemis = network gate + behavioral detection** — complementary layers, shared customer base, natural integration story
+- **Mythos made this urgent** — autonomous AI-driven attacks at scale are not a future scenario, they already happened
 
 ---
 
@@ -128,4 +158,8 @@ Anthropic published a case study on how Artemis uses Claude as a core engineerin
 | Resilient Cyber — Agentic IAM deep dive | https://www.resilientcyber.io/p/the-identity-layer-underneath-the |
 | CSO Online — Identity in the Agentic Era | https://www.csoonline.com/article/4163365/what-cisos-need-to-get-right-as-identity-enters-the-agentic-era.html |
 | Anthropic × Artemis Case Study | https://claude.com/customers/artemis |
+| Artemis Security | https://artemissecurity.com |
+| Tailscale — Cleric tsnet Integration | https://tailscale.com/blog/cleric-tsnet-automate-software-operations |
+| Anthropic — Mythos Preview | https://red.anthropic.com/2026/mythos-preview/ |
+| Anthropic — Project Glasswing | https://www.anthropic.com/glasswing |
 | The Core Strength Network — AI won't kill cyber | LinkedIn post |

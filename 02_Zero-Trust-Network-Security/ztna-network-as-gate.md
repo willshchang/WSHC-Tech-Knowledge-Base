@@ -88,6 +88,34 @@ Each connection = a distinct Tailscale device. No broad VPN access. Least-privil
 
 ---
 
+## OAuth Tokens & the Limits of Network-Layer Offboarding
+
+A common misunderstanding: deprovisioning a user from Tailscale is not the same as revoking all their access.
+
+**What Tailscale does on offboarding:**
+- User deprovisioned from IdP → Tailscale node loses authentication on next key expiry
+- With key expiry enabled and device authorization required, network access is revoked cleanly within the configured window
+
+**What Tailscale cannot do:**
+- OAuth tokens issued directly between a user's browser and a SaaS app (Notion, Slack, GitHub, Google Workspace) **bypass the network layer entirely**
+- Tailscale never issued those tokens, never saw them, and cannot revoke them
+- From the SaaS app's perspective, the token is still valid — the user is still "in"
+
+> "Tailscale closes the network access door on offboarding — but OAuth tokens issued directly to SaaS apps bypass the network layer entirely. That's an IdP governance and SaaS management problem, not a connectivity problem."
+
+This is the **ghost account problem** — users deprovisioned at the directory level with live credentials still floating in connected applications.
+
+| Offboarding Layer | Tailscale's Role | Who Owns It |
+|---|---|---|
+| Network access revocation | ✅ Handles via key expiry + IdP deactivation | Tailscale + IdP |
+| SSO session termination | 🟡 Depends on IdP propagating revocation | Okta / Entra ID |
+| OAuth token revocation (SaaS apps) | ❌ Outside network layer scope | Okta Lifecycle Management, CASB tools |
+| Behavioral detection of ghost accounts | ❌ Outside network layer scope | Artemis, CASB |
+
+**Practical implication:** Key expiry should always be configured in production Tailnets. And OAuth governance (token discovery, lifetime enforcement, revocation) needs a dedicated layer above the network — typically the IdP or a CASB tool.
+
+---
+
 ## Key Takeaways
 
 - **Network as sensor is diminishing** — encryption has made payload inspection largely obsolete
@@ -95,6 +123,7 @@ Each connection = a distinct Tailscale device. No broad VPN access. Least-privil
 - **Tailscale's ROI is fast** — sub-6-month payback because connectivity touches every layer of the stack
 - **Infrastructure and security are converging** — the clean separation between the two teams is disappearing
 - **tsnet / subnet routers** let AI agents access customer environments with least-privilege scoping — no hardcoded credentials, no standing access
+- **OAuth tokens outlive network revocation** — Tailscale closes the network door; SaaS token governance requires IdP lifecycle management or CASB tooling
 
 ---
 
@@ -106,3 +135,4 @@ Each connection = a distinct Tailscale device. No broad VPN access. Least-privil
 | Tailscale Forrester TEI Report 2026 | https://tailscale.com/resources/reports/forrester-tei-report-2026 |
 | Cleric + Tailscale tsnet blog | https://tailscale.com/blog/cleric-tsnet-automate-software-operations |
 | Ross Haleliuk — CISOs Owning Infrastructure | https://substack.com/@ventureinsecurity/p-195780508 |
+| 1Password — OAuth Ghost Accounts & Supply Chain Risk | https://1password.com/blog/protect-against-oauth-supply-chain-breaches |

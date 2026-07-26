@@ -94,18 +94,18 @@ This is exactly why **human-in-the-loop controls, runtime enforcement, and audit
 
 ---
 
-## Tailscale Relevance
+## Network Layer Relevance (ZTIA)
 
-Mythos-class attacks execute autonomous lateral movement, privilege escalation, and credential theft — all network-layer activities:
+Mythos-class attacks execute autonomous lateral movement, privilege escalation, and credential theft — all Network-layer activities. See `ztia-ecosystem-map.md` for the full layer breakdown.
 
-| Attack Phase | Tailscale's Role |
+| Attack Phase | Network Layer's Role |
 |---|---|
 | Lateral movement | ACLs define exactly what can talk to what — limits blast radius even if a node is compromised |
-| Credential theft | Tailscale SSH eliminates SSH keys as a credential surface |
-| Reconnaissance | Devices not in the Tailnet are unreachable — reduces discoverable attack surface |
-| Privilege escalation via network | Subnet routers enforce who can reach what segment — contains escalation paths |
+| Credential theft | Identity-aware networking (e.g. Tailscale SSH) eliminates SSH keys as a credential surface |
+| Reconnaissance | Devices outside the trusted network mesh are unreachable — reduces discoverable attack surface |
+| Privilege escalation via network | Subnet routers and segmentation enforce who can reach what segment — contains escalation paths |
 
-> Tailscale doesn't stop Mythos-class vulnerabilities at the code level. It limits what an attacker can reach after initial access — containing the blast radius of autonomous lateral movement.
+> The Network layer doesn't stop Mythos-class vulnerabilities at the code level. It limits what an attacker can reach after initial access — containing the blast radius of autonomous lateral movement. This is one containment layer among several in the ZTIA stack, not a complete defense on its own.
 
 ---
 
@@ -115,7 +115,7 @@ Mythos-class attacks execute autonomous lateral movement, privilege escalation, 
 - **Autonomous cyber espionage happened in 2025** — AI conducted 80–90% of a state-sponsored operation with minimal human supervision
 - **The speed gap is the problem** — patch cycles measured in weeks can't keep up with exploits found in hours
 - **Defensive use requires the same governance as offensive risk** — deploying Mythos-class tools creates agents that need identity, access, audit, and kill switch controls
-- **Tailscale's role** — contain blast radius via network segmentation; not a code-level defense, but a critical post-access containment layer
+- **The Network layer's role** — contain blast radius via segmentation and identity-aware connectivity; not a code-level defense, but a critical post-access containment layer in the broader ZTIA stack
 
 ---
 

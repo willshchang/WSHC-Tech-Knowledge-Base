@@ -141,19 +141,20 @@ Reference: https://claude.com/customers/artemis
 
 ---
 
-## Tailscale Collaboration Angle
+## ZTIA Layer Placement
 
-Artemis and Tailscale don't directly compete — they operate at different layers of the stack. The collaboration opportunity is real:
+**Layer: Detection**
+
+Artemis is a Detection-layer company, alongside CrowdStrike — this is the job, regardless of deployment mechanism. See `ztia-ecosystem-map.md` for the full layer breakdown and how Detection connects to every other layer.
 
 | Angle | Detail |
 |---|---|
-| **Telemetry as a data source** | Tailscale generates rich network access logs — device auth events, ACL matches, node connections. These are exactly the signals Artemis would want to correlate with identity and cloud activity. |
-| **Shared customer base** | Both target modern, cloud-native tech companies (Mercury, Wix, Lemonade are Artemis customers — all the type of companies that use Tailscale). |
-| **Zero Trust alignment** | Tailscale enforces network-layer Zero Trust; Artemis detects behavioral anomalies across identity and cloud. Together they close the loop: Tailscale gates access, Artemis watches what happens after. |
-| **Identity pivot** | Artemis correlates identity signals (Okta privilege escalation, AWS API anomalies). Tailscale's identity-based ACLs create an additional layer of evidence when access patterns deviate. |
-| **Agentic security** | Artemis explicitly tracks AI agents as entities in its data model. Tailscale's tsnet library powers agent-to-environment connectivity (e.g. Cleric). These two use cases will increasingly converge. |
+| **Telemetry as a data source** | Artemis's federated query architecture pulls telemetry from Network, Identity & Access, and Endpoint layers without upfront ingestion — device auth events, ACL matches, access anomalies all become correlation signals |
+| **Shared customer base** | Targets modern, cloud-native tech companies (Mercury, Wix, Lemonade) — the same customer profile that adopts modern Network and Identity & Access layer tooling |
+| **Identity signal correlation** | Artemis correlates identity signals (Okta privilege escalation, AWS API anomalies) — a direct connection to the Identity & Access layer, surfacing behavioral risk that access-governance tools alone wouldn't catch |
+| **Agentic security** | Artemis explicitly tracks AI agents as entities in its data model — connecting Detection to the Agent Construction and Hybrid Workforce Observability layers as agentic activity becomes a larger share of what needs correlating |
 
-> Natural integration story: Tailscale as the **network access control layer** feeding structured telemetry into Artemis's **behavioral detection layer**.
+> Natural integration story: ground-truth telemetry from Network, Identity & Access, and Endpoint layers feeding into Artemis's behavioral **Detection** layer.
 
 ---
 
@@ -164,7 +165,7 @@ Artemis and Tailscale don't directly compete — they operate at different layer
 - Technical differentiator: **federated query architecture + per-org dynamic data model** — not generic rules, not static ingestion
 - Already processing **15,000TB/day** and reducing MTTD/MTTR by **94%** for enterprise customers
 - Deep **Anthropic/Claude** integration — one of a select few security companies in direct collaboration
-- **Tailscale integration opportunity** is real: network telemetry as a data source, shared customer segment, Zero Trust layer complementarity
+- **Artemis sits in the ZTIA Detection layer** alongside CrowdStrike — federated telemetry from Network, Identity & Access, and Endpoint layers feeds its behavioral correlation model
 
 ---
 

@@ -117,6 +117,30 @@ This mirrors the same insight from the Dosu/Cyera comparison: **the interesting 
 
 ---
 
+## Origin-Overpower: What Origin Adds on Top of Every ZTIA Layer
+
+This section makes the strongest, most specific case for Origin's differentiation — not by replacing any layer, but by showing what each layer *cannot* see that Origin can. Origin doesn't compete with any single layer below; it sits underneath all of them, seeing the ground truth every other layer has to infer or go without.
+
+| ZTIA Layer | What That Layer Already Does | What Origin Adds That Layer Cannot See |
+|---|---|---|
+| **Network** | Controls what can reach what — identity-verified connectivity, segmentation | Network tools see *that* a connection happened. Origin sees *why* — what prompted the agent to make that network call, what local file or credential it read into context first |
+| **Identity & Access** | Governs whether an identity should be here — SSO, lifecycle, entitlement reviews | IAM tools trust that the identity making a request is who it claims to be. Origin catches the mismatch — an agent's commit identity not matching its SSO identity — a signal IAM tools have no visibility into because it happens at the endpoint, not the directory |
+| **Discovery & Context — Data** (Cyera) | Discovers and classifies sensitive data across cloud, SaaS, on-prem | Cyera sees where data lives. Origin sees the moment a human or agent pastes that data into an AI session — the exact instant of exposure, before it becomes a data-at-rest problem anyone else can find |
+| **Discovery & Context — Knowledge** (Dosu) | Grounds AI answers in real project context to prevent hallucination | Dosu ensures the agent understands the codebase correctly. Origin proves what the agent *actually did* with that understanding — the causal chain from correct (or incorrect) comprehension to real-world action |
+| **Detection** (Artemis, CrowdStrike) | Correlates behavioral signals across environments into attack narratives | Detection tools work from what gets reported or logged. CrowdStrike's AI visibility depends on vendors choosing to expose activity via compliance APIs. Origin sees every agent regardless of vendor cooperation — including shadow agents nobody approved and nobody is reporting on |
+| **Agent Construction** (LangChain) | Builds the orchestration and harness layer that makes an agent function | LangChain has no visibility into what happens after deployment. Origin is the only layer that observes the actual runtime behavior of anything LangChain builds, once it's running on a real endpoint |
+| **Endpoint Visibility** (Tanium, Ivanti) | Tells you what's installed, whether it's compliant, what changed | This is the closest adjacent layer — and the difference is the whole point. Tanium/Ivanti give you state. Origin gives you causality. "A process ran" vs. "the agent chose to refactor authentication middleware, read .env files, and called an unfamiliar endpoint — and here's why" |
+| **Secrets & Credentials** (1Password) | Vaults and rotates secrets, governs NHI credentials | 1Password protects secrets that are stored correctly. Origin catches the secret that was never supposed to leave the vault in the first place — pasted into a debug session, in plain text, mid-conversation |
+| **AI Financial Visibility** (1Password AI Spend) | Tracks token spend by vendor, team, user, model | Spend tracking tells you the bill. Origin tells you what you bought — which specific agent action, on whose machine, produced that cost |
+| **Cloud Posture** (Wiz, Orca) | Scans cloud environments for misconfiguration and exposure | Out of scope for Origin directly — but the *agents* that might introduce a cloud misconfiguration through automated actions are exactly what Origin is watching at the point of action, before the misconfiguration ever reaches the cloud layer for Wiz/Orca to find |
+| **IT Workflow Orchestration** (ServiceNow) | Orchestrates automated remediation workflows from ground-truth data | ServiceNow acts on data fed to it. Origin is a candidate ground-truth source ServiceNow doesn't currently have — agent behavioral causality, not just endpoint compliance state |
+
+**The pattern across every row:** every other layer either sees *state* (what exists, what's configured, what's compliant) or *reported activity* (what a vendor chose to log). Origin is the only layer that sees **intent and causality** — the actual reasoning chain connecting a prompt to a real-world action, on the actual device, regardless of which vendor or tool was involved.
+
+> This is not a claim that Origin replaces any layer above. It's the opposite: every layer above becomes more effective with Origin's causal ground truth feeding into it — better Detection correlation, more precise Identity governance, faster root cause for Endpoint Visibility tools. Origin is infrastructure underneath the stack, not a layer competing within it.
+
+---
+
 ## Personal Relevance — Why This Space Fits Will's Background
 
 This is a direct, structural match to hands-on endpoint management experience:

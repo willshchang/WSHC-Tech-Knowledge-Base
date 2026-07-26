@@ -86,21 +86,21 @@ For agentic identities, governance needs to ask all of that **plus:**
 
 ---
 
-## The Tailscale Angle: Identity-Aware Networking as a Safety Layer
+## The Network Layer Angle: Identity-Aware Networking as a Safety Layer
 
-This is where my background in identity security intersects directly with Tailscale's architecture.
+This is where my background in identity security intersects directly with the **Network layer** of the ZTIA stack.
 
-Tailscale is an **identity-aware network.** Every connection is tied to a verified identity — human or machine. ACLs define exactly what each identity can reach. Nothing connects that isn't explicitly permitted.
+An identity-aware network — Tailscale is the clearest example — ties every connection to a verified identity, human or machine. ACLs define exactly what each identity can reach. Nothing connects that isn't explicitly permitted.
 
 For agentic workloads, this matters more than most people realize:
 
 - An agent's network access can be **scoped at the policy layer** — it can only reach the systems its conditions actually require
 - If an agent is compromised or a condition misfires, **network segmentation limits the blast radius** — the agent can't reach what it was never permitted to reach
-- Tailscale's audit logs capture **what connected to what** — a critical layer of the observability picture
+- Network-layer audit logs capture **what connected to what** — one layer of the observability picture, not the whole picture
 
-Tailscale doesn't govern the conditions. It doesn't inspect what the agent does after it connects. But it controls **what the agent can reach** — and in a world where agents execute at machine speed, constraining the reachable surface is one of the most important safety controls you can have.
+This layer doesn't govern the conditions themselves. It doesn't inspect what an agent does after it connects — that's the job of Detection and Hybrid Workforce Observability layers. But it controls **what the agent can reach** — and in a world where agents execute at machine speed, constraining the reachable surface is one of the most important safety controls available.
 
-> Network-layer least privilege is agentic safety infrastructure. Not sufficient on its own — but foundational.
+> Network-layer least privilege is agentic safety infrastructure. Not sufficient on its own — but foundational, and it's just one layer of a much larger ZTIA stack. See `ztia-ecosystem-map.md` for how this connects to Identity & Access, Detection, and Hybrid Workforce Observability.
 
 ---
 
@@ -126,7 +126,7 @@ Identity security was always the control plane of the enterprise. In the agentic
 - **The failure mode is scale and speed** — a bad condition executes perfectly, repeatedly, across your entire environment
 - **Condition design governance** is the new layer above traditional access governance that most frameworks haven't caught up to
 - **HITL is about imperfect conditions**, not distrust of AI — humans need checkpoints to catch what condition design gets wrong
-- **Tailscale's identity-aware network** scopes what agents can reach — network-layer least privilege as agentic safety infrastructure
+- **Identity-aware networking** (Tailscale being the clearest example) scopes what agents can reach — network-layer least privilege as one foundational piece of agentic safety infrastructure, not the whole answer
 - **The Mythos incident proved this isn't theoretical** — autonomous AI-driven attacks are already happening at scale
 
 ---

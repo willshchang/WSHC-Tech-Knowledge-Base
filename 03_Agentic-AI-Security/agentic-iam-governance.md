@@ -108,21 +108,11 @@ Design thesis: **humans should bar-raise and direct, not make every individual s
 
 Anthropic published a case study on how Artemis uses Claude as a core engineering collaborator.
 
-### Tailscale × Artemis: Complementary Layers
+### Artemis in the ZTIA Ecosystem
 
-Tailscale and Artemis don't compete — they operate at different layers of the stack and complement each other directly:
+**Layer: Detection.** Artemis's federated query architecture ingests telemetry from Network, Identity & Access, and Endpoint layers — without requiring upfront data ingestion — and correlates it into behavioral attack narratives. See `ztia-ecosystem-map.md` for the full layer breakdown.
 
-| Layer | Who Owns It | What It Does |
-|---|---|---|
-| Network access control | Tailscale | Gates what identities and agents can reach — enforces connectivity policy |
-| Behavioral detection | Artemis | Watches what happens after the connection — correlates signals into attack narratives |
-
-**The integration story:**
-- Tailscale generates structured network telemetry: node auth events, ACL matches, connection attempts, device activity
-- Artemis's federated query architecture ingests that telemetry alongside identity, cloud, and endpoint signals
-- Together they close the loop: Tailscale controls access, Artemis detects anomalies in how that access is used
-
-**Shared customer base:** Mercury, Wix, Lemonade, Abnormal AI — all Artemis customers, all the type of modern SaaS companies that run Tailscale for zero trust networking.
+**Shared customer base:** Mercury, Wix, Lemonade, Abnormal AI — all Artemis customers, all the type of modern SaaS companies adopting a full modern security stack across every layer, not just detection.
 
 ---
 
@@ -145,7 +135,7 @@ See: `mythos-project-glasswing.md` in this folder for the full breakdown.
 - **Kill switches and HITL controls** are non-negotiable — autonomous agents need human override capability
 - **Agentic AI doesn't replace security** — code scanning is one slice; identity, network, cloud, and incident response still need humans and dedicated tooling
 - **Okta's approach** treats agents as a natural extension of IAM — same platform, new identity type
-- **Tailscale + Artemis = network gate + behavioral detection** — complementary layers, shared customer base, natural integration story
+- **Artemis sits in the ZTIA Detection layer** — federated telemetry ingestion across Network, Identity & Access, and Endpoint layers, correlated into behavioral attack narratives
 - **Mythos made this urgent** — autonomous AI-driven attacks at scale are not a future scenario, they already happened
 
 ---
@@ -159,7 +149,6 @@ See: `mythos-project-glasswing.md` in this folder for the full breakdown.
 | CSO Online — Identity in the Agentic Era | https://www.csoonline.com/article/4163365/what-cisos-need-to-get-right-as-identity-enters-the-agentic-era.html |
 | Anthropic × Artemis Case Study | https://claude.com/customers/artemis |
 | Artemis Security | https://artemissecurity.com |
-| Tailscale — Cleric tsnet Integration | https://tailscale.com/blog/cleric-tsnet-automate-software-operations |
 | Anthropic — Mythos Preview | https://red.anthropic.com/2026/mythos-preview/ |
 | Anthropic — Project Glasswing | https://www.anthropic.com/glasswing |
 | The Core Strength Network — AI won't kill cyber | LinkedIn post |

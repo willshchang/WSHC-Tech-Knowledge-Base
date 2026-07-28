@@ -25,7 +25,7 @@ Earn the right to the customer's time before onboarding even starts. Understand 
 
 **Don't sell. Listen.** What does the actual decision-maker care about — not what does the feature list say.
 
-*Applied example (Cyera):* Understand their current data security posture, compliance obligations, AI adoption stage. What does their CISO actually care about?
+*Applied example:* Understand a customer's current security posture, compliance obligations, and where they are in adopting AI tools across their organization. What does their CISO actually care about?
 
 ---
 
@@ -35,7 +35,7 @@ Build the success plan around **their** goals, not a generic feature list. What 
 
 **Where TAM enters early:** For enterprise-level prospects, this can start before the deal even closes — providing technical confidence that the platform can handle their specific stack (identity provider integration, existing workflows, technical requirements) is part of building trust ahead of signature.
 
-*Applied example (Cyera):* "Safe AI adoption" looks different per customer — PHI visibility for healthcare, PCI/SOC 2 compliance for fintech, AI training data governance for tech companies.
+*Applied example:* "Safe adoption" looks different per customer — a healthcare organization cares about PHI exposure, a fintech company cares about PCI/SOC 2 compliance, a tech company cares about IP and source code governance. Same platform, different definition of success depending on what the customer actually has to protect.
 
 ---
 
@@ -53,7 +53,7 @@ Adaptation is bidirectional: adapt to their workflow AND elevate them toward bet
 
 **Translation is the job:** A technical finding means nothing to a non-technical stakeholder until it's translated into their language. "High severity overshared S3 bucket" means nothing to an executive. "Your customer PII is accessible to 400 people who shouldn't have it" means everything. Closing that translation gap is core to this stage.
 
-*Applied example (Cyera):* The platform is deployed and scanning — now what? Customers who can't interpret results or act on them become churned customers regardless of technical success.
+*Applied example:* A platform gets deployed and starts surfacing real findings — now what? Customers who can't interpret those findings or act on them become churned customers regardless of how technically sound the deployment was. The platform working correctly and the customer succeeding are two different outcomes, and this stage is where they either converge or diverge.
 
 ---
 
@@ -67,7 +67,7 @@ Once stable and adapted, **then** accelerate. Expand the footprint, introduce ne
 
 **Revenue literacy matters here:** Understanding NRR (Net Revenue Retention) and GRR (Gross Revenue Retention) isn't a sales metric to ignore — it's the business outcome this stage exists to protect and grow. Being technical doesn't mean being blind to the commercial side of the relationship.
 
-*Applied example (Cyera):* More connectors, new use cases (AI Guardian, Browser Shield), expansion revenue — but only once the customer is already getting full value from what they have.
+*Applied example:* New connectors, new use cases, new modules unlocking expansion revenue — but only once a customer is already getting full value from what they currently have. Trying to sell expansion before Stabilize is solid just creates a customer paying for more of something they haven't adopted yet.
 
 ---
 

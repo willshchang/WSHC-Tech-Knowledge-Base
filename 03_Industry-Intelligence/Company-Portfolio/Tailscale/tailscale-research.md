@@ -265,6 +265,8 @@ Tailscale's architecture is intentionally split:
 
 **Why this matters strategically:** Aperture is Tailscale's direct entry into the AI governance space — extending the "identity-aware network" philosophy from human/device connectivity into the emerging problem of securing and auditing AI agent and LLM API traffic. This positions Tailscale with a genuine foothold in the agentic AI security conversation, not just traditional network security.
 
+**How this compares to identity-platform-layer players (C1):** C1's Agentic Vault and Agent Runtime Governance solve a strikingly similar problem — replacing raw API keys with identity, governing AI/LLM traffic through a gateway — but from the identity platform layer rather than the network layer. Same underlying philosophy ("identity replaces secrets"), two different starting points. See `c1-research.md` for the full mechanism-level comparison.
+
 ---
 
 ## ZTIA Layer Placement

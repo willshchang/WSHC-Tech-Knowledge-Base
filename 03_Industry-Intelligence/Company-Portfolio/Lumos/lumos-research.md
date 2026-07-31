@@ -117,7 +117,7 @@ Albus operates continuously as the observability layer sitting on top of Lumos's
 | Competitor | Position vs. Lumos |
 |---|---|
 | **SailPoint, Saviynt (legacy IGA)** | Lumos: ~7x faster deployment, ~80% lower cost of ownership, modern UX, AI-native. Legacy players go deeper into entitlements/role mining/SoD detection at a granular level, but take months to deploy at significant cost |
-| **ConductorOne** | Similar positioning; Lumos has stronger agentic UAR capability and broader integrations |
+| **C1** (formerly ConductorOne) | Closest direct competitor — similar AI-native, fast-deploying positioning. C1's July 2026 Launch Week (Shadow AI Discovery, Agentic Vault, Runtime Governance, Agentic Security & Intelligence) expanded it well beyond core IGA — see `c1-research.md` for the full head-to-head, which concludes neither has a clean structural advantage in the core Identity & Access layer |
 | **Okta IGA** | Okta is the identity provider itself; Lumos positions as identity-provider agnostic — a neutral governance layer on top of any IdP |
 | **Zluri** | Lumos has deeper governance depth; Zluri has broader shadow IT discovery |
 | **Linx Security (emerging)** | Goes deeper on fine-grained entitlements directly from connected apps; newer and smaller, gaining traction as a "modern SailPoint" |

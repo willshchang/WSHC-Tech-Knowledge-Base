@@ -39,7 +39,7 @@ Organizing by **layer and pain** instead of company name is what makes this an a
 | Layer | Core Question It Answers | Companies | Notes |
 |---|---|---|---|
 | **Network** | What can reach what? | Tailscale, Twingate, ZeroTier | Network-as-gate — identity-verified connectivity, segmentation, least-privilege reachability |
-| **Identity & Access** | Should this identity (human or agent) be here? | Okta, Microsoft Entra ID, ConductorOne, Lumos | Access governance, SSO, lifecycle management, entitlement reviews |
+| **Identity & Access** | Should this identity (human or agent) be here? | Okta, Microsoft Entra ID, C1 (formerly ConductorOne), Lumos | Access governance, SSO, lifecycle management, entitlement reviews. C1 has expanded well beyond this single layer since July 2026 — see deep dive |
 | **Discovery & Context — Data** | Do we know what sensitive data we have, and is it exposed? | Cyera | DSPM — discovery, classification, risk scoring for data |
 | **Discovery & Context — Knowledge** | Does this agent actually understand what it's looking at? | Dosu | Grounds AI answers in real project context to prevent hallucination |
 | **Detection** | Is something behaving wrong right now? | Artemis, CrowdStrike | Cross-domain behavioral detection and response — this is the job, regardless of deployment mechanism |
@@ -47,7 +47,7 @@ Organizing by **layer and pain** instead of company name is what makes this an a
 | **Agent Construction** | How do we build the agent in the first place? | LangChain | Orchestration/development layer — the raw material other layers react to. Explicitly does NOT govern what it builds |
 | **Endpoint Visibility** | What's on this machine, is it compliant, what changed? | Tanium, Ivanti | State snapshots, inventory, query-based — tells you *that* something happened, not *why* |
 | **Hybrid Workforce Observability** | Why did this happen — what did a human or AI agent actually do, step by step? | Origin | Vendor-agnostic causal tracing (prompt → reasoning → action → outcome) across both human and AI activity — the layer nobody else operates at with this depth |
-| **Secrets & Credentials** | Are secrets and non-human credentials protected? | 1Password, HashiCorp Vault | Vaulting, rotation, NHI governance |
+| **Secrets & Credentials** | Are secrets and non-human credentials protected? | 1Password, HashiCorp Vault, C1 (Agentic Vault) | Vaulting, rotation, NHI governance. C1's Agentic Vault (July 2026) is a genuine new entrant using workload federation instead of credential delivery |
 | **AI Financial Visibility** | What are we actually spending on AI, and by whom? | 1Password (AI Spend and Consumption Management) | Financial/spend visibility ONLY — explicitly not behavioral or causal. "Token bills tell you what you spent. [Hybrid Workforce Observability] tells you what you bought." |
 | **Cloud Posture** | Is our cloud environment misconfigured or exposed? | Wiz, Orca | CSPM — scans cloud resource configs for exposure |
 | **IT Workflow Orchestration** | How do we turn ground-truth data into automated action? | ServiceNow (Now Assist AI Agents; also ITOM AI Prime powered by Tanium) | Consumes endpoint/data truth from other layers, orchestrates workflows and remediation on top of it — does not generate the ground truth itself |
@@ -64,6 +64,8 @@ Tailscale's specific differentiator: identity-first mesh networking at the IP la
 
 **What this layer cannot do:** see what happens after a connection is made, govern SaaS OAuth tokens issued directly between browser and app, or inspect endpoint-level behavior.
 
+**Aperture vs. C1's identity-layer approach:** Tailscale's Aperture gateway and C1's Agentic Vault/Runtime Governance both replace raw API keys with identity-based access to AI/LLM traffic — same philosophy, applied from opposite ends of the stack (network vs. identity platform). Not real substitutes; more a sign the whole industry is converging on "identity replaces secrets" independently. See `tailscale-research.md` and `c1-research.md` for the full comparison.
+
 ---
 
 ### Identity & Access
@@ -72,9 +74,11 @@ The traditional core of IAM — but the agentic era breaks assumptions this laye
 
 Okta's agentic answer: three questions — where are my agents, what can they connect to, what can they do — anchored by discovery, least-privilege access, kill switches, and lifecycle governance.
 
-**ConductorOne vs. Lumos — the closest head-to-head in this layer:** both are fast-deploying, AI-native IGA platforms explicitly governing human, non-human, and AI agent identities, positioned against slow, expensive legacy IGA (SailPoint, Saviynt). ConductorOne's core architecture is a real-time "Unified Identity Graph"; Lumos's is the Albus AI agent doing the analytical work on top of a static visibility layer. Founding pedigree differs too — ConductorOne's CEO ran Okta's own security/PAM product lines before building the disruptor; Lumos's founders came from outside the identity industry entirely. Neither has a clean structural advantage — this is genuinely a two-horse race, decided more by execution and specific integration fit than category positioning.
+**C1 (formerly ConductorOne) vs. Lumos — the closest head-to-head in this layer:** both are fast-deploying, AI-native IGA platforms explicitly governing human, non-human, and AI agent identities, positioned against slow, expensive legacy IGA (SailPoint, Saviynt). C1's core architecture is a real-time "Unified Identity Graph"; Lumos's is the Albus AI agent doing the analytical work on top of a static visibility layer. Founding pedigree differs too — C1's CEO ran Okta's own security/PAM product lines before building the disruptor; Lumos's founders came from outside the identity industry entirely. Neither has a clean structural advantage — this is genuinely a two-horse race, decided more by execution and specific integration fit than category positioning. Full comparison in `c1-research.md`.
 
-**The known gap:** Okta, ConductorOne, and Lumos all answer "should this agent be here." None of them answer "does this agent actually understand what it's looking at" (that's Dosu) or "what did this agent actually do, in causal detail" (that's Origin).
+**C1's July 2026 Launch Week pushed it well beyond this layer** — Discovery & Context (Shadow AI Discovery), Secrets & Credentials (Agentic Vault), and a narrow slice of Detection (Agentic Security & Intelligence). See `c1-research.md` for the full four-part breakdown and dedicated comparisons against Origin, 1Password, Artemis/CrowdStrike, and Tailscale Aperture.
+
+**The known gap:** Okta, C1, and Lumos all answer "should this agent be here." None of them answer "does this agent actually understand what it's looking at" (that's Dosu) or "what did this agent actually do, in causal detail" (that's Origin) — though C1's Runtime Governance is the closest an Identity & Access player has come to touching that causal territory, via real-time enforcement rather than after-the-fact explanation.
 
 ---
 
@@ -105,6 +109,8 @@ Behavioral, cross-domain detection and response. Both Artemis and CrowdStrike be
 | Key limitation | Newer, less proven at massive scale | Depends on vendors choosing to report through compliance channels — doesn't see shadow/unsanctioned agent activity the way Origin's endpoint-native approach does |
 
 **The honest distinction with Origin:** CrowdStrike correlates what AI vendors choose to report. Origin observes what actually happens on the endpoint, independent of whether any vendor reports anything at all.
+
+**C1's Agentic Security & Intelligence is Detection-adjacent, not Detection proper:** it produces "findings," but scoped to identity-configuration risk (unowned accounts, misclassification) rather than broad behavioral/attack correlation. Closer to identity posture management than a SIEM. Full comparison in `c1-research.md`.
 
 ---
 
@@ -149,6 +155,8 @@ This is a distinct layer from Endpoint Visibility, not a subset of it. The disti
 
 **Why this layer is called out specifically:** nobody else operates here with this depth. It sits adjacent to Detection and Identity & Access (an agent's commit identity not matching its SSO identity is a real identity governance signal, surfaced only because Origin sees the endpoint causally) but its core job — reconstructing intent and causality for both human and AI activity — is unique enough to deserve its own layer rather than being folded into Endpoint Visibility or Detection.
 
+**C1's Runtime Governance is the closest a governance-layer product has come to this territory** — real-time enforcement (block/hold/redact) per tool call, but it requires the agent's traffic to route through C1's gateway. Origin requires no enrollment at all. Governance vs. observation, not a clean substitute either way — full mechanism-level comparison in `c1-research.md`.
+
 ---
 
 ### Secrets & Credentials / AI Financial Visibility
@@ -161,6 +169,8 @@ This is a distinct layer from Endpoint Visibility, not a subset of it. The disti
 | **AI Spend and Consumption Management** (launched July 14, 2026, public preview) | Tracks AI token spend across Anthropic, Cursor, OpenAI via admin API keys — consumption by vendor, team, user, model, with budget alerts | AI Financial Visibility |
 
 **Critical distinction, in Origin's own words:** *"Token bills tell you what you spent. [We] tell you what you bought."* 1Password's new capability is financial visibility only — it does not trace behavioral causality, what an agent actually did, or why. This is not a knock on the product; it's simply a different layer solving a different pain (budget forecasting vs. causal governance).
+
+**C1's Agentic Vault vs. 1Password's Connect API:** a genuine architecture difference, not just a feature gap — 1Password's Connect API delivers the actual secret to the agent at runtime (dynamic fetch, still exposed in context); C1's workload federation never gives the agent the raw secret at all, only a short-lived scoped credential. Two generations of the same problem. Full comparison in `c1-research.md`.
 
 ---
 

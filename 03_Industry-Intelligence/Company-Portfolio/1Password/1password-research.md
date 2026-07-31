@@ -89,6 +89,8 @@ Tracks AI token spend across Anthropic, Cursor, and OpenAI via admin API keys �
 
 **The "Intentional Access" concept:** every time an AI agent uses a credential, 1Password logs which human authorized it — attributed access, not "set and forget" standing permissions.
 
+**How this compares to newer agent-native vaults (C1):** 1Password's Connect API model fetches the credential dynamically at runtime rather than hardcoding it — a real improvement over static secrets, but the agent still ultimately receives the raw credential value. C1's Agentic Vault (via workload federation) takes this a step further architecturally — the agent never receives the raw secret at all, only a short-lived scoped credential. Two different generations of the same "avoid hardcoded secrets" problem. See `c1-research.md` for the full mechanism-level comparison, including where 1Password retains real advantages (AI spend visibility, broader enterprise footprint).
+
 ---
 
 ## Three Eras of Customer AI Maturity

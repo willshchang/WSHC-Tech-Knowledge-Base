@@ -111,7 +111,7 @@ Origin is a strong example of why organizing the ecosystem by **layer/pain solve
 |---|---|
 | **Endpoint** | Primary surface — the sensor lives on the device, observes agents at the OS/process level |
 | **Detection** | Behavioral drift detection, anomalous session flagging — functionally adjacent to what Artemis does at the cross-environment level, but Origin's vantage point is endpoint-native rather than aggregated across cloud/identity/network |
-| **Identity** | The agent-vs-SSO commit identity mismatch example is a genuine identity governance signal — Origin is catching an access/identity problem that a pure IAM tool (Okta, Lumos, ConductorOne) would have no visibility into, because it happens at the endpoint before or alongside the identity layer's own logging |
+| **Identity** | The agent-vs-SSO commit identity mismatch example is a genuine identity governance signal — Origin is catching an access/identity problem that a pure IAM tool (Okta, Lumos, C1) would have no visibility into, because it happens at the endpoint before or alongside the identity layer's own logging |
 
 This mirrors the same insight from the Dosu/Cyera comparison: **the interesting companies right now are rarely staying inside one clean product category.** Origin's endpoint vantage point gives it visibility other layers structurally can't get — it sees the *local* context (files, credentials, artifacts) before anything leaves the machine, which is something network-layer or cloud-layer tools cannot observe by design.
 
@@ -139,6 +139,8 @@ This section makes the strongest, most specific case for Origin's differentiatio
 
 > This is not a claim that Origin replaces any layer above. It's the opposite: every layer above becomes more effective with Origin's causal ground truth feeding into it — better Detection correlation, more precise Identity governance, faster root cause for Endpoint Visibility tools. Origin is infrastructure underneath the stack, not a layer competing within it.
 
+**One genuine, direct overlap worth naming precisely — C1's Shadow AI Discovery:** C1 (formerly ConductorOne) launched endpoint scanning for local MCP configs, unsanctioned copilots, and plaintext credentials in July 2026 — nearly identical surface area to Origin's own core discovery claim. Where they diverge is what happens next: C1 turns a discovery into a governed access item (owner, review, deprovisioning). Origin turns it into a causal explanation (why did this happen, what was the intent). See `c1-research.md` for the full mechanism-level comparison — the honest read is that they're complementary more than competing in a mature stack, since C1 explicitly supports ingesting third-party causal findings via API.
+
 ---
 
 ## Personal Relevance — Why This Space Fits Will's Background
@@ -157,7 +159,6 @@ This is a direct, structural match to hands-on endpoint management experience:
 - **The core insight:** traditional EDR was built assuming a human at the keyboard — AI agents break that assumption, leaving a causal-chain gap (the "why") that Origin is built to fill
 - **The product traces the full chain** — prompt → reasoning → files touched → commands run → network calls → outcome — attributed to user, agent, and process
 - **Origin is genuinely multi-layer** — Endpoint is the primary surface, but it surfaces real Detection and Identity governance signals other tools structurally cannot see from their own vantage point
-- **Small, not widely known yet** — genuinely early enough that being one of the first people in a target company's network with a clear grasp of the space is a real advantage
 - **Direct personal fit** — endpoint visibility and compliance pattern-recognition instincts translate almost directly onto this product category, just applied to agents instead of human end users
 
 ---

@@ -156,6 +156,8 @@ Artemis is a Detection-layer company, alongside CrowdStrike — this is the job,
 
 > Natural integration story: ground-truth telemetry from Network, Identity & Access, and Endpoint layers feeding into Artemis's behavioral **Detection** layer.
 
+**How this compares to identity-adjacent detection (C1):** C1's Agentic Security & Intelligence (launched July 2026) also produces "findings," but at a much narrower scope — identity-configuration risk (unowned accounts, misclassification) rather than Artemis's broad behavioral/attack correlation across environments. Different buying decision, and C1 explicitly supports ingesting Artemis-style findings via API rather than replacing them. See `c1-research.md` for the full comparison.
+
 ---
 
 ## Key Takeaways

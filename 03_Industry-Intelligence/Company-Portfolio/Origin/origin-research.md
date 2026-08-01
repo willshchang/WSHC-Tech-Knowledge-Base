@@ -143,7 +143,19 @@ This section makes the strongest, most specific case for Origin's differentiatio
 
 ---
 
-## Personal Relevance — Why This Space Fits Will's Background
+## Watch This Space: Kernels, Canvases, and the OpenWiki Question
+
+Origin posted a product demo (undated in this doc, no corresponding blog post found as of writing) describing a new capability:
+
+> "You can run a query, save its logic as a kernel, add the results to a canvas, then keep it on hand as your data evolves... Canvases and kernels are stored in the cloud and shareable across your Origin tenant so you can build the analysis once and let the rest of the organization work from it."
+
+**What this is today, as described:** a saved, reusable query (a "kernel") whose output persists on a shared, cloud-stored view (a "canvas") that stays current as underlying data changes — closer to a living saved search or a persistent Grafana panel than a knowledge base. Built for a human or team to keep checking, not (yet) for another system to consume as context.
+
+**Why it's worth watching:** the distinction between "a saved search" and "an OpenWiki-style knowledge layer" isn't really about the saving mechanism — it's about what consumes the output. A saved search stays a saved search as long as a human is the one reading the canvas. It becomes something closer to LangChain's OpenWiki (a living, structured knowledge artifact an AI agent reads as grounding context, auto-updated as the underlying system changes) the moment an agent — Origin's own, or a customer's — starts consuming canvas output as context for its own reasoning, rather than a human glancing at a dashboard.
+
+**The natural next step, if Origin goes this direction:** given Origin's own trajectory (endpoint observability → causal tracing → almost certainly its own agent for querying/summarizing findings eventually), kernels and canvases are well-positioned to become exactly that — a persistent, evolving, agent-consumable knowledge layer about an organization's own AI/endpoint activity, not just a dashboard. Worth revisiting this section once Origin ships an agent of its own, or once canvas output shows up as a documented input to any AI-consuming feature.
+
+---
 
 This is a direct, structural match to hands-on endpoint management experience:
 

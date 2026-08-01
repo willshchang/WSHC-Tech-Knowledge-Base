@@ -38,17 +38,18 @@ Organizing by **layer and pain** instead of company name is what makes this an a
 
 | Layer | Core Question It Answers | Companies | Notes |
 |---|---|---|---|
-| **Network** | What can reach what? | Tailscale, Twingate, ZeroTier | Network-as-gate — identity-verified connectivity, segmentation, least-privilege reachability |
-| **Identity & Access** | Should this identity (human or agent) be here? | Okta, Microsoft Entra ID, C1 (formerly ConductorOne), Lumos | Access governance, SSO, lifecycle management, entitlement reviews. C1 has expanded well beyond this single layer since July 2026 — see deep dive |
-| **Discovery & Context — Data** | Do we know what sensitive data we have, and is it exposed? | Cyera | DSPM — discovery, classification, risk scoring for data |
-| **Discovery & Context — Knowledge** | Does this agent actually understand what it's looking at? | Dosu | Grounds AI answers in real project context to prevent hallucination |
-| **Detection** | Is something behaving wrong right now? | [Artemis](../03_Industry-Intelligence/Company-Portfolio/Artemis/artemis-security-research.md), CrowdStrike | Cross-domain behavioral detection and response — this is the job, regardless of deployment mechanism |
+| **Network** | What can reach what? | [Tailscale](../03_Industry-Intelligence/Company-Portfolio/Tailscale/tailscale-research.md), Twingate, ZeroTier | Network-as-gate — identity-verified connectivity, segmentation, least-privilege reachability |
+| **Identity & Access** | Should this identity (human or agent) be here? | [Okta](../03_Industry-Intelligence/Company-Portfolio/Okta/okta-research.md), Microsoft Entra ID, [C1 (formerly ConductorOne)](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md), [Lumos](../03_Industry-Intelligence/Company-Portfolio/Lumos/lumos-research.md) | Access governance, SSO, lifecycle management, entitlement reviews. C1 has expanded well beyond this single layer since July 2026 — see deep dive |
+| **Discovery & Context — Data** | Do we know what sensitive data we have, and is it exposed? | [Cyera](../03_Industry-Intelligence/Company-Portfolio/Cyera/cyera-research.md) | DSPM — discovery, classification, risk scoring for data |
+| **Discovery & Context — Knowledge** | Does this agent actually understand what it's looking at? | [Dosu](../03_Industry-Intelligence/Company-Portfolio/Dosu/dosu-research.md) | Grounds AI answers in real project context to prevent hallucination |
+| **Detection** | Is something behaving wrong right now? | [Artemis](../03_Industry-Intelligence/Company-Portfolio/Artemis/artemis-security-research.md), CrowdStrike, Splunk, SentinelOne | Cross-domain behavioral detection and response — this is the job, regardless of deployment mechanism. Splunk is the dominant legacy SIEM every AI-native player positions against; SentinelOne is one of three EDR vendors now acquiring pipeline tooling directly (see Data Pipeline & Routing) |
 | **Telemetry Visualization & Aggregation** | Can we see and correlate signals across metrics, logs, and traces in one place? | Grafana Labs (LGTM stack) | General infrastructure observability, not identity-native — the layer other layers' data often gets visualized through; edging toward Detection as it adds SOC/security analytics capability |
-| **Agent Construction** | How do we build the agent in the first place? | LangChain | Orchestration/development layer — the raw material other layers react to. Explicitly does NOT govern what it builds |
-| **Endpoint Visibility** | What's on this machine, is it compliant, what changed? | Tanium, Ivanti | State snapshots, inventory, query-based — tells you *that* something happened, not *why* |
+| **Data Pipeline & Routing** | How does telemetry actually get from every source to every destination, in a usable shape? | [Cribl](../03_Industry-Intelligence/Company-Portfolio/Cribl/cribl-research.md) | The pipe, not the destination — sits upstream of Telemetry Visualization, Detection, and every other layer that consumes telemetry. Vendor-neutral by design, though EDR vendors are increasingly acquiring competing pipeline tools to reduce dependency on neutral players |
+| **Agent Construction** | How do we build the agent in the first place? | [LangChain](../03_Industry-Intelligence/Company-Portfolio/LangChain/langchain-research.md) | Orchestration/development layer — the raw material other layers react to. Explicitly does NOT govern what it builds |
+| **Endpoint Visibility** | What's on this machine, is it compliant, what changed? | Tanium, Ivanti, [Axonius](../03_Industry-Intelligence/Company-Portfolio/Axonius/axonius-research.md) | State snapshots, inventory, query-based — tells you *that* something happened, not *why*. Axonius's actual scope extends beyond pure endpoint into full asset attack-surface visibility (CAASM) — devices, SaaS, cloud, identity, and OT/IoT |
 | **Hybrid Workforce Observability** | Why did this happen — what did a human or AI agent actually do, step by step? | [Origin](../03_Industry-Intelligence/Company-Portfolio/Origin/origin-research.md) | Vendor-agnostic causal tracing (prompt → reasoning → action → outcome) across both human and AI activity — the layer nobody else operates at with this depth |
-| **Secrets & Credentials** | Are secrets and non-human credentials protected? | 1Password, HashiCorp Vault, C1 (Agentic Vault) | Vaulting, rotation, NHI governance. C1's Agentic Vault (July 2026) is a genuine new entrant using workload federation instead of credential delivery |
-| **AI Financial Visibility** | What are we actually spending on AI, and by whom? | 1Password (AI Spend and Consumption Management) | Financial/spend visibility ONLY — explicitly not behavioral or causal. "Token bills tell you what you spent. [Hybrid Workforce Observability] tells you what you bought." |
+| **Secrets & Credentials** | Are secrets and non-human credentials protected? | [1Password](../03_Industry-Intelligence/Company-Portfolio/1Password/1password-research.md), HashiCorp Vault, C1 (Agentic Vault) | Vaulting, rotation, NHI governance. C1's Agentic Vault (July 2026) is a genuine new entrant using workload federation instead of credential delivery |
+| **AI Financial Visibility** | What are we actually spending on AI, and by whom? | [1Password](../03_Industry-Intelligence/Company-Portfolio/1Password/1password-research.md) (AI Spend and Consumption Management) | Financial/spend visibility ONLY — explicitly not behavioral or causal. "Token bills tell you what you spent. [Hybrid Workforce Observability] tells you what you bought." |
 | **Cloud Posture** | Is our cloud environment misconfigured or exposed? | Wiz, Orca | CSPM — scans cloud resource configs for exposure |
 | **IT Workflow Orchestration** | How do we turn ground-truth data into automated action? | ServiceNow (Now Assist AI Agents; also ITOM AI Prime powered by Tanium) | Consumes endpoint/data truth from other layers, orchestrates workflows and remediation on top of it — does not generate the ground truth itself |
 
@@ -64,7 +65,7 @@ Tailscale's specific differentiator: identity-first mesh networking at the IP la
 
 **What this layer cannot do:** see what happens after a connection is made, govern SaaS OAuth tokens issued directly between browser and app, or inspect endpoint-level behavior.
 
-**Aperture vs. C1's identity-layer approach:** Tailscale's Aperture gateway and C1's Agentic Vault/Runtime Governance both replace raw API keys with identity-based access to AI/LLM traffic — same philosophy, applied from opposite ends of the stack (network vs. identity platform). Not real substitutes; more a sign the whole industry is converging on "identity replaces secrets" independently. See [tailscale-research.md](../03_Industry-Intelligence/Company-Portfolio/Tailscale/tailscale-research.md) and [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md) for the full comparison.
+**Aperture vs. C1's identity-layer approach:** Tailscale's Aperture gateway and C1's Agentic Vault/Runtime Governance both replace raw API keys with identity for AI/LLM traffic — same philosophy, opposite ends of the stack (network vs. identity platform). Not real substitutes; more a sign the industry is converging on "identity replaces secrets" independently. Full comparison in [tailscale-research.md](../03_Industry-Intelligence/Company-Portfolio/Tailscale/tailscale-research.md) and [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
 
 ---
 
@@ -74,9 +75,9 @@ The traditional core of IAM — but the agentic era breaks assumptions this laye
 
 Okta's agentic answer: three questions — where are my agents, what can they connect to, what can they do — anchored by discovery, least-privilege access, kill switches, and lifecycle governance.
 
-**C1 (formerly ConductorOne) vs. Lumos — the closest head-to-head in this layer:** both are fast-deploying, AI-native IGA platforms explicitly governing human, non-human, and AI agent identities, positioned against slow, expensive legacy IGA (SailPoint, Saviynt). C1's core architecture is a real-time "Unified Identity Graph"; Lumos's is the Albus AI agent doing the analytical work on top of a static visibility layer. Founding pedigree differs too — C1's CEO ran Okta's own security/PAM product lines before building the disruptor; Lumos's founders came from outside the identity industry entirely. Neither has a clean structural advantage — this is genuinely a two-horse race, decided more by execution and specific integration fit than category positioning. Full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
+**C1 vs. Lumos** — the closest head-to-head in this layer, both AI-native and fast-deploying against slow legacy IGA. Neither has a clean structural advantage; execution and integration fit decide it more than category positioning. Full mechanism-level comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
 
-**C1's July 2026 Launch Week pushed it well beyond this layer** — Discovery & Context (Shadow AI Discovery), Secrets & Credentials (Agentic Vault), and a narrow slice of Detection (Agentic Security & Intelligence). See [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md) for the full four-part breakdown and dedicated comparisons against Origin, 1Password, Artemis/CrowdStrike, and Tailscale Aperture.
+**C1's July 2026 Launch Week pushed it well beyond this layer** — Discovery & Context, Secrets & Credentials, and a narrow slice of Detection, in one coherent four-day rollout. Full breakdown and dedicated comparisons against Origin, 1Password, Artemis/CrowdStrike, and Tailscale Aperture in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
 
 **The known gap:** Okta, C1, and Lumos all answer "should this agent be here." None of them answer "does this agent actually understand what it's looking at" (that's Dosu) or "what did this agent actually do, in causal detail" (that's Origin) — though C1's Runtime Governance is the closest an Identity & Access player has come to touching that causal territory, via real-time enforcement rather than after-the-fact explanation.
 
@@ -100,17 +101,15 @@ Both are "you can't govern what you haven't discovered and correctly understood"
 
 ### Detection
 
-Behavioral, cross-domain detection and response. Both Artemis and CrowdStrike belong here — full stop, regardless of deployment mechanism (an endpoint agent is just how the sensor gets deployed, not a separate capability).
+Behavioral, cross-domain detection and response. Artemis, CrowdStrike, and Splunk all belong here — full stop, regardless of deployment mechanism (an endpoint agent is just how the sensor gets deployed, not a separate capability).
 
-| | Artemis | CrowdStrike |
-|---|---|---|
-| Approach | AI-native rebuild — federated queries, per-org dynamic detection model | Established platform (Falcon), AI (Charlotte) layered on top |
-| AI activity visibility | Native to its detection model | Via Claude Compliance API integration — ingests official vendor-reported logs into Falcon Next-Gen SIEM |
-| Key limitation | Newer, less proven at massive scale | Depends on vendors choosing to report through compliance channels — doesn't see shadow/unsanctioned agent activity the way Origin's endpoint-native approach does |
+**Artemis vs. CrowdStrike, in one line:** Artemis is an AI-native rebuild with a per-org dynamic detection model; CrowdStrike is an established platform (Falcon) with AI (Charlotte) layered on top, and its AI-activity visibility depends on vendors choosing to report through compliance channels rather than observing directly. Full comparison table in [artemis-security-research.md](../03_Industry-Intelligence/Company-Portfolio/Artemis/artemis-security-research.md).
 
-**The honest distinction with Origin:** CrowdStrike correlates what AI vendors choose to report. Origin observes what actually happens on the endpoint, independent of whether any vendor reports anything at all.
+**Splunk's role:** the dominant legacy SIEM every AI-native Detection player positions against — expensive at scale, complex, slow to adapt. The "AI-enabled bolt-on vs. AI-native rebuild" distinction that runs through this whole category starts with Splunk as the reference point.
 
-**C1's Agentic Security & Intelligence is Detection-adjacent, not Detection proper:** it produces "findings," but scoped to identity-configuration risk (unowned accounts, misclassification) rather than broad behavioral/attack correlation. Closer to identity posture management than a SIEM. Full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
+**The honest distinction with Origin:** CrowdStrike/Artemis correlate what gets reported or observed. Origin observes what actually happens on the endpoint, independent of whether any vendor reports anything at all.
+
+**C1's Agentic Security & Intelligence is Detection-adjacent, not Detection proper** — identity-configuration risk findings, not broad behavioral correlation. Closer to identity posture management than a SIEM. Full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
 
 ---
 
@@ -121,6 +120,18 @@ Not an identity-native layer — Grafana Labs isn't a security company, it's a g
 **Why it's worth tracking in this ecosystem specifically:** Grafana's 2026 roadmap includes expanding its "All-in-One" suite into more advanced SOC/security analytics — a real signal the company is edging toward overlap with the Detection layer, not staying purely infrastructure-focused. Worth revisiting this placement as that expansion matures.
 
 **A live, relevant case study:** Grafana itself suffered a real GitHub breach in May 2026 — a misconfigured GitHub Action (a "Pwn Request" vulnerability) exposed a token that let an attacker download the company's codebase, caught only via an internal canary token. The compromise was later traced to the broader TanStack npm supply chain attack. It's a clean, current illustration of CI/CD pipeline risk — directly relevant to the same governance-gap thread running through this whole ecosystem map, just realized at a company that builds observability tooling rather than identity tooling.
+
+---
+
+### Data Pipeline & Routing
+
+Genuinely distinct from Telemetry Visualization, even though the two are adjacent in the observability stack. Grafana is a *destination* — where telemetry gets visualized and correlated after it arrives. [Cribl](../03_Industry-Intelligence/Company-Portfolio/Cribl/cribl-research.md) is the *pipe* — it sits upstream of every destination, deciding what data gets routed where, in what shape, after being filtered and reduced. Cribl doesn't store or visualize data itself (aside from Cribl Lake as an optional cheap storage destination); it's infrastructure every other telemetry-consuming layer depends on.
+
+**The core value proposition:** telemetry volume is growing ~29% annually per IDC, doubling roughly every 18 months while budgets stay flat. Cribl customers routinely cut data volumes 30-50% and can feed multiple destination tools (a SIEM, a cheap cold-storage bucket, a dashboard) from a single collection pass, without re-instrumenting anything.
+
+**The important industry signal:** major EDR/Detection-layer vendors — CrowdStrike, Palo Alto Networks, and SentinelOne — all acquired competing pipeline tooling in Q4 2025 (Onum, Observe AI, and Chronosphere respectively) specifically to build direct ingestion lines into their own platforms. This creates a real structural tension: a vendor-owned pipeline is commercially incentivized to route the most data toward that vendor's own destination. A neutral pipeline like Cribl has no such incentive, since its business model depends on staying agnostic about where data ultimately lands — the same "neutral connective layer vs. platform-native alternative" tension that shows up elsewhere in this ecosystem (Tailscale's Network layer vs. platform-locked alternatives; C1's Agentic Vault vs. credential models tied to one identity platform).
+
+**Cribl on agentic AI specifically:** CEO Clint Sharp has publicly framed agent-generated telemetry as needing the same routing and reduction discipline as any other observability data — just at much higher, less predictable volume as agent adoption scales.
 
 ---
 
@@ -136,6 +147,8 @@ LangChain builds the orchestration and harness layer that turns a raw model into
 
 Tanium and Ivanti generate state and inventory truth — is the device compliant, what's installed, what changed, who touched it. Query-based, real-time at scale (Tanium's specific historic differentiator), feeding into patch/asset/vulnerability management.
 
+**[Axonius](../03_Industry-Intelligence/Company-Portfolio/Axonius/axonius-research.md) sits here too, but with genuinely broader scope than pure endpoint** — created the CAASM category, agentless discovery across devices, SaaS, cloud, identity, and OT/IoT, correlated into one system of record. Where Tanium/Ivanti are endpoint-first, Axonius is asset-first across the entire attack surface. Its Verified Assets push makes the same "garbage in, garbage out" argument already seen with Lumos's upstream data quality thesis. Full breakdown in axonius-research.md.
+
 **What this layer cannot do:** explain *why* something happened, trace causal chains, or reason about intent. It can tell you a process ran or a file changed — it cannot tell you what an agent was trying to accomplish or what it read into context before acting.
 
 ---
@@ -144,33 +157,21 @@ Tanium and Ivanti generate state and inventory truth — is the device compliant
 
 Origin's own language, used deliberately as the layer name: observability built for *"a workforce that is part-human and part-machine."*
 
-This is a distinct layer from Endpoint Visibility, not a subset of it. The distinction mirrors the classic **visibility vs. observability** split from monitoring/SRE practice — visibility is state snapshots, observability is causal tracing:
+This is a distinct layer from Endpoint Visibility, not a subset of it — the same **visibility vs. observability** split from monitoring/SRE practice. Visibility is state snapshots (what's installed, what changed). Observability is causal tracing (why it happened, what the agent was trying to do). Full side-by-side comparison against Tanium/Ivanti in [origin-research.md](../03_Industry-Intelligence/Company-Portfolio/Origin/origin-research.md).
 
-| | Endpoint Visibility (Tanium/Ivanti) | Hybrid Workforce Observability (Origin) |
-|---|---|---|
-| Question | What's on this machine? | Why did this happen? |
-| Data shape | State snapshots, inventory, query results | Causal chain — prompt → reasoning → action → outcome |
-| Depth | A process ran, a file changed | Why the agent touched that file, what it was trying to do, what it read into context first |
-| Vendor scope | Vendor-agnostic query tool | Vendor-agnostic causal tracer — sees Claude, Cursor, Copilot, ChatGPT, local models, sanctioned or shadow |
+**Why this layer is called out specifically:** nobody else operates here with this depth. It sits adjacent to Detection and Identity & Access (an agent's commit identity not matching its SSO identity is a real identity governance signal, surfaced only because Origin sees the endpoint causally) but its core job — reconstructing intent and causality for both human and AI activity — is unique enough to deserve its own layer.
 
-**Why this layer is called out specifically:** nobody else operates here with this depth. It sits adjacent to Detection and Identity & Access (an agent's commit identity not matching its SSO identity is a real identity governance signal, surfaced only because Origin sees the endpoint causally) but its core job — reconstructing intent and causality for both human and AI activity — is unique enough to deserve its own layer rather than being folded into Endpoint Visibility or Detection.
-
-**C1's Runtime Governance is the closest a governance-layer product has come to this territory** — real-time enforcement (block/hold/redact) per tool call, but it requires the agent's traffic to route through C1's gateway. Origin requires no enrollment at all. Governance vs. observation, not a clean substitute either way — full mechanism-level comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
+**C1's Runtime Governance is the closest a governance-layer product has come to this territory** — real-time enforcement per tool call, but requires the agent's traffic to route through C1's gateway. Origin requires no enrollment at all. Governance vs. observation, not a clean substitute either way — full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
 
 ---
 
 ### Secrets & Credentials / AI Financial Visibility
 
-1Password spans two distinct jobs, worth keeping separate:
+1Password spans two distinct jobs, worth keeping separate: vaulting/rotation/NHI governance (Secrets & Credentials), and tracking AI token spend by vendor/team/user (AI Financial Visibility, launched July 2026). Full breakdown of both in [1password-research.md](../03_Industry-Intelligence/Company-Portfolio/1Password/1password-research.md).
 
-| Job | What It Does | Layer |
-|---|---|---|
-| **Secrets & Credentials** | Vaulting, rotation, NHI governance, SSH key elimination-adjacent capabilities | Secrets & Credentials |
-| **AI Spend and Consumption Management** (launched July 14, 2026, public preview) | Tracks AI token spend across Anthropic, Cursor, OpenAI via admin API keys — consumption by vendor, team, user, model, with budget alerts | AI Financial Visibility |
+**Critical distinction, in Origin's own words:** *"Token bills tell you what you spent. [We] tell you what you bought."* Financial visibility is not behavioral or causal — a different layer solving a different pain (budget forecasting vs. causal governance).
 
-**Critical distinction, in Origin's own words:** *"Token bills tell you what you spent. [We] tell you what you bought."* 1Password's new capability is financial visibility only — it does not trace behavioral causality, what an agent actually did, or why. This is not a knock on the product; it's simply a different layer solving a different pain (budget forecasting vs. causal governance).
-
-**C1's Agentic Vault vs. 1Password's Connect API:** a genuine architecture difference, not just a feature gap — 1Password's Connect API delivers the actual secret to the agent at runtime (dynamic fetch, still exposed in context); C1's workload federation never gives the agent the raw secret at all, only a short-lived scoped credential. Two generations of the same problem. Full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
+**C1's Agentic Vault vs. 1Password's Connect API:** a genuine architecture difference — 1Password's Connect API still delivers the actual secret to the agent at runtime; C1's workload federation never gives the agent the raw secret at all. Two generations of the same problem. Full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
 
 ---
 
@@ -217,8 +218,10 @@ Across nearly every layer above, a consistent gap keeps appearing: **agent const
 - **Agent Construction is explicitly not governance** — LangChain builds, it doesn't police what it builds
 - **Origin's differentiation is real and specific** — vendor-agnostic, causal, covers both human and AI activity, sees shadow agents nobody else can see
 - **The governance gap is the connective tissue** — nearly every layer eventually runs into "who approves this, who audits this, who can kill this" — and that gap is where identity security expertise becomes the differentiator
-- **ConductorOne and Lumos are the closest head-to-head in Identity & Access** — both AI-native, both fast-deploying, execution and fit decide it more than category positioning
+- **C1 and Lumos are the closest head-to-head in Identity & Access** — both AI-native, both fast-deploying, execution and fit decide it more than category positioning
 - **Telemetry Visualization (Grafana) sits underneath, not beside, the security-native layers** — it's where other layers' data often gets seen, and it's a live example of CI/CD supply chain risk in its own right (the May 2026 GitHub breach)
+- **Data Pipeline & Routing (Cribl) is genuinely distinct from Telemetry Visualization** — the pipe vs. the destination, and the EDR vendors acquiring competing pipeline tools (CrowdStrike/Onum, Palo Alto/Observe AI, SentinelOne/Chronosphere) is a real structural signal about who wants to own the connective layer
+- **Axonius extends Endpoint Visibility into full asset attack-surface visibility (CAASM)** — broader than Tanium/Ivanti's endpoint-first scope, and its Verified Assets push makes the same upstream-data-quality argument already seen with Lumos, applied to asset inventory instead of identity governance
 
 ---
 
@@ -234,6 +237,8 @@ Across nearly every layer above, a consistent gap keeps appearing: **agent const
 | Dosu | https://www.dosu.dev |
 | Origin | https://www.originhq.com |
 | 1Password — AI Spend and Consumption Management | https://1password.com/press/2026/july/1password-introduces-ai-spend-and-consumption-management |
+| Cribl — What is an Observability Pipeline | https://cribl.io/blog/the-observability-pipeline/ |
+| Axonius — Adapt 2026 AI-Powered Remediation | https://www.axonius.com/newsroom/press-release/axonius-delivers-ai-powered-remediation |
 | Tanium & ServiceNow — ITOM AI Prime Partnership | https://www.businesswire.com/news/home/20260506341909/en/Tanium-Combines-Forces-with-ServiceNow-to-Deliver-New-Autonomous-IT-Solution-Powered-by-Industry-Leading-Platforms |
 | ConductorOne | https://www.conductorone.com |
 | Grafana Labs | https://grafana.com |

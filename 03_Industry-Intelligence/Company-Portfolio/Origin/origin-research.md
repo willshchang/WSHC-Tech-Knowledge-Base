@@ -44,13 +44,31 @@ Prelude began as a **continuous security testing / adversary emulation platform*
 
 In September 2025, Prelude raised $16M (bringing total funding to $45M) specifically to commercialize **runtime memory protection** — technology designed to detect and stop malicious code at the moment of execution, targeting the growing category of in-memory attacks that evade traditional file- and behavior-based detection (approximately 75% of advanced cyberattacks now operate exclusively in-memory, per the company's own framing at the time).
 
-### The Pivot: Endpoint AI Observability (Origin, 2026)
+### The Pivot: Endpoint AI Observability (Origin, July 2026)
 
-Origin represents a full repositioning: rather than general endpoint protection, the company now focuses specifically on **observing what AI agents do on employee endpoints.**
+This was not a soft rebrand — it was a **full company refocus**. Per the CEO's own July 27, 2026 announcement, Prelude Security is being wound down entirely: existing customers are honored through the remainder of their current contracts, with the company hoping to migrate many of them to Origin, but the company's full attention moves to Origin exclusively.
+
+**How they got there, in their own account:** offensive testing work at Prelude repeatedly showed endpoint-focused attack techniques succeeding — not from a single missing signature, but from structural limitations in how endpoint defenses were designed. That led to three conclusions that became Origin's founding architecture:
+
+1. The future of endpoint technology will increasingly run in **user mode rather than depending on invasive kernel architectures**
+2. **Signatures and known-malicious-pattern detection** will become less effective as AI produces novel, contextual, highly variable behavior
+3. The next generation of endpoint security will be built around **trace-driven observability**
+
+**A real technical credential worth noting:** the team wrote the definitive published technical book on EDR evasion (No Starch Press, *"Evading EDR"*) — meaning the pivot to observability-first architecture is grounded in genuine, published expertise on exactly how traditional endpoint defenses fail, not a marketing repositioning.
 
 > "Origin is building the endpoint AI observability platform for AI-adopting organizations. We believe that organizations should not adopt AI on their endpoints without observability in place."
 
 This is a sharp, well-timed pivot. As AI coding agents and browser copilots became standard tools running directly on employee machines throughout 2025–2026, a structural gap emerged: traditional Endpoint Detection and Response (EDR) was built around a single assumption — a human sits at a keyboard, and malicious activity looks different from normal activity. AI agents break that assumption completely.
+
+---
+
+## Third-Party Validation — The SACR Endpoint Market Map
+
+On July 22, 2026, independent analyst firm **Software Analyst Cyber Research (SACR)** published a market map of the Endpoint Control and Prevention category — five zones covering the vendors securing the layer where AI agents now do real work. This is genuine third-party category placement, not Origin's own self-description.
+
+**Origin was placed in Zone 3: "agent runtime observability"** — the zone answering what an agent actually did, distinct from Zone 1-2 (software posture, prevention) and covering the same territory Origin's own "Hybrid Workforce Observability" framing describes elsewhere in this KB.
+
+**A specific quote worth remembering, sourced from a Brightmind Partners LinkedIn post referencing the report:** SACR called Origin **"the most technically differentiated Zone 3 vendor in the market,"** citing patented CPU-level telemetry, a local graph database running on every endpoint, and full prompt-to-action lineage for AI agent activity — architecturally notable specifically because it requires **no kernel driver and no cloud round trips**, a direct technical consequence of the user-mode design philosophy described above.
 
 ---
 
@@ -64,32 +82,59 @@ Origin's own framing of the gap is precise and worth understanding directly:
 
 Traditional EDR heuristics turn into noise when an AI agent is doing legitimate work — reading files, writing code, spawning processes, opening connections are all *normal* agent behavior, not necessarily suspicious activity. What's missing is intent and causality, not just event logging.
 
-### How the Platform Works
+### The Platform Has Three Solutions, One Underlying Data Layer
 
-| Capability | Description |
+Origin's own product site organizes around three named solutions — Governance, Adoption, and Investment (marketed as "Spend") — all built on the same core capture layer: a user-mode sensor recording the full local trace of every agent action at the endpoint (prompt → tool call → file touched → network call → outcome), attributed to user, agent, and process.
+
+#### 1. Governance — "What are they doing?"
+
+Framework: **Discover → Detect → Investigate → Prove**
+
+| Step | What It Does |
 |---|---|
-| **Discover shadow agents** | Detects new coding agents, browser copilots, and local tools the moment they appear on a machine — even ones IT has never approved or seen |
-| **Intercept at the TLS layer** | Captures AI traffic with process attribution — tied to the specific process and user, not just network-level metadata |
-| **Extract full session content** | Pulls prompts, responses, and tool calls out of every AI session |
-| **Correlate intent to action** | Ties the original prompt to files touched, commands executed, services accessed, and final outcome — the full causal chain |
-| **Map prompts to actions** | Follows a delegated task end-to-end: prompt → file reads → command execution → service access → outcome |
-| **See local context before the wire** | Understands which files, credentials, and local artifacts an agent pulled into context *before* anything left the endpoint |
-| **Spot behavioral drift** | Flags when an agent moves from expected work into unrelated systems, topics, or workflows — before it becomes a scattered mess of disconnected logs |
+| **Discover** | Builds a live inventory of every AI tool, agent, model, and MCP server across endpoints — who's using them, what they can access, where unapproved technology creates exposure |
+| **Detect** | Continuously analyzes activity for exposed credentials, sensitive files, destructive commands, and other patterns needing investigation |
+| **Investigate** | Reconstructs the full chain from prompt to action — the exact prompt, the model's reasoning, the tool call, the file touched, the network call, the resulting action |
+| **Prove** | Keeps a searchable, role-based-access-controlled record of activity and investigation evidence — audit-ready by default |
 
-### Real Examples From Their Own Product Marketing
+**A real cited stat:** enterprise teams uncover **3x more AI activity than their existing IT inventories show** once they deploy Origin.
 
-These are illustrative of exactly what the platform surfaces in practice:
+**A concrete detection example, straight from their own product demo data:** a "credential material in prompt or tool output" signal flags API keys, tokens, private keys, and connection strings appearing in prompt text — values redacted before tagging, so the signal itself doesn't create new exposure.
 
-- **Secrets exposure in AI sessions:** "Someone just pasted a .env file into an AI debugging session. Not intentionally. Just the usual 'here's my config, why won't this connect?' moment, complete with keys, tokens, passwords, and connection strings."
-- **Identity mismatch detection:** "9 active agent ↔ GitHub auth pairs where the agent's commit identity doesn't match the SSO identity. All on Engineering machines." — this is a direct identity governance signal, surfaced at the endpoint layer, not the IAM layer
-- **Shadow agent discovery:** "214 first-time agent installs this week. 18 are personal / unsanctioned. 196 came through the standard install path; the rest were side-loaded."
-- **Spend attribution:** "Token bills tell you what you spent. Origin tells you what you bought." — clusters AI conversations by topic, team, and initiative so spend becomes legible to whoever approved the budget
+#### 2. Adoption — "How is AI actually being used?"
+
+Framework: **Map → Track → Watch → Reuse**
+
+| Step | What It Does |
+|---|---|
+| **Map** | Organizes AI activity by team, project, topic, and workflow — is AI supporting product development, research, customer work, operations, sales? |
+| **Track** | Identifies repeated work and emerging patterns — where teams are solving the same problem more than once without knowing it |
+| **Watch** | Follows which workflows become part of daily work and where AI usage is gaining or losing ground over time |
+| **Reuse** | Captures the artifact and context behind successful AI work — "the same work, done more than once, drafted into a skill the next person can run" |
+
+**Why this matters — the direct Mimica.ai overlap:** this is genuinely task/process mining, just AI-scoped rather than all-desktop-activity-scoped. Where a tool like Mimica.ai mines *raw* desktop activity (any app, human-driven) to recommend *new* automation opportunities (RPA/IDP/GenAI) where none exists, Origin's Adoption solution mines *AI agent activity specifically* to find where AI-driven automation is *already happening organically* and help it spread and standardize into a reusable "skill." Different starting points, structurally similar end goal — turning observed repeated work into a codified, reusable process.
+
+#### 3. Investment / Spend — "Where is our intelligence going?"
+
+Origin's own internal name for this is **"Intelligence Allocation."** Framework: **Observe → Attribute → Optimize → Prove**
+
+| Step | What It Does |
+|---|---|
+| **Observe** | Tracks usage and estimated cost across prompts, sessions, models, providers, tools, agents, and employees |
+| **Attribute** | Clusters AI activity by team, topic, and workflow — spend arrives already grouped by what it actually bought, not just a vendor line item |
+| **Optimize** | Surfaces where frontier (expensive) models are the default for routine work a cheaper model could handle identically, and where the same problem is being solved redundantly |
+| **Prove** | Answers what was spent, where it went, and what it produced — pull requests opened, reviews completed, clusters of work, endpoints active |
+
+**A real, specific, quotable customer result:** *"Origin turned our token telemetry into a savings plan. It showed what was driving the bill, and found savings without moving important work to weaker models."* — **$250K found in savings on a $1M annual AI bill.**
+
+> "Token bills tell you what you spent. Origin tells you what you bought."
 
 ### Deployment Model
 
 - Installs directly on the endpoint (laptop/workstation) — described as a 5-minute install
 - Free tier available for individual visibility (see every AI agent on your own machine)
 - Listed in the Anthropic Connectors Directory — meaning Claude itself can query Origin's data directly (e.g., asking Claude which projects are driving token spend, which unsanctioned agents are running, what happened in a specific anomalous session)
+- AI usage is also exposed through Origin's own MCP server, so any agent already running in an environment can query the aggregated data directly — not just a human dashboard user
 
 ---
 
@@ -167,9 +212,11 @@ This is a direct, structural match to hands-on endpoint management experience:
 
 ## Key Takeaways
 
-- **Origin is a rebrand and full repositioning of Prelude Security** (2020–2025), pivoting from general continuous security testing / runtime memory protection into a focused bet on **endpoint AI observability**
+- **Origin is a full company refocus, not a soft rebrand** — Prelude Security is being wound down entirely as of July 2026, with the company going all-in on Origin
 - **The core insight:** traditional EDR was built assuming a human at the keyboard — AI agents break that assumption, leaving a causal-chain gap (the "why") that Origin is built to fill
-- **The product traces the full chain** — prompt → reasoning → files touched → commands run → network calls → outcome — attributed to user, agent, and process
+- **The product traces the full chain** — prompt → reasoning → files touched → commands run → network calls → outcome — attributed to user, agent, and process, organized into three named solutions (Governance, Adoption, Investment) on one shared data layer
+- **Third-party validation is real, not just self-description** — independent analyst firm SACR placed Origin in Zone 3 of its endpoint market map and called it "the most technically differentiated Zone 3 vendor in the market"
+- **The Adoption solution has a genuine, specific overlap with Mimica.ai** — both are task/process mining tools; Origin is scoped to AI-mediated activity specifically and captures organically-emerging automation rather than recommending net-new automation from scratch
 - **Origin is genuinely multi-layer** — Endpoint is the primary surface, but it surfaces real Detection and Identity governance signals other tools structurally cannot see from their own vantage point
 - **Direct personal fit** — endpoint visibility and compliance pattern-recognition instincts translate almost directly onto this product category, just applied to agents instead of human end users
 
@@ -180,9 +227,12 @@ This is a direct, structural match to hands-on endpoint management experience:
 | Source | Link |
 |---|---|
 | Origin official site | https://www.originhq.com |
-| Origin — Approach / Product | https://www.originhq.com/approach |
-| Origin — Vision | https://www.originhq.com/vision |
+| Origin — Governance Solution | https://www.originhq.com/solutions/ai-governance |
+| Origin — Adoption Solution | https://www.originhq.com/solutions/ai-adoption |
+| Origin — Investment/Spend Solution | https://www.originhq.com/solutions/ai-spend |
 | Origin — Prelude Security Rebrand Notice | https://www.originhq.com/preludesecurity |
+| Origin Blog — Prelude is now Origin | https://www.originhq.com/blog/prelude-is-now-origin |
+| Origin Blog — SACR Maps Endpoint Observability | https://www.originhq.com/blog/sacr-maps-endpoint-observability |
 | Origin Blog | https://www.originhq.com/blog |
 | Prelude Security — $16M Investment Announcement (Sept 2025) | https://www.businesswire.com/news/home/20250925489179/en/Prelude-Security-Announces-Additional-$16M-Investment-Led-by-Brightmind-Partners-Along-With-Sequoia-Capital-and-Insight-Partners-To-Build-the-Next-Generation-of-Endpoint-Security |
 | Prelude — Company & Funding Profile | https://startupintros.com/orgs/prelude |

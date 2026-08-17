@@ -48,6 +48,8 @@ Organizing by **layer and pain** instead of company name is what makes this an a
 | **Agent Construction** | How do we build the agent in the first place? | [LangChain](../03_Industry-Intelligence/Company-Portfolio/LangChain/langchain-research.md) | Orchestration/development layer — the raw material other layers react to. Explicitly does NOT govern what it builds |
 | **Endpoint Visibility** | What's on this machine, is it compliant, what changed? | Tanium, Ivanti, [Axonius](../03_Industry-Intelligence/Company-Portfolio/Axonius/axonius-research.md) | State snapshots, inventory, query-based — tells you *that* something happened, not *why*. Axonius's actual scope extends beyond pure endpoint into full asset attack-surface visibility (CAASM) — devices, SaaS, cloud, identity, and OT/IoT |
 | **Hybrid Workforce Observability** | Why did this happen — what did a human or AI agent actually do, step by step? | [Origin](../03_Industry-Intelligence/Company-Portfolio/Origin/origin-research.md) | Vendor-agnostic causal tracing (prompt → reasoning → action → outcome) across both human and AI activity — the layer nobody else operates at with this depth |
+| **Agentic Reliability — Visibility** | Do we have an accurate, standards-scored inventory of our engineering services and assets? | [Cortex](../03_Industry-Intelligence/Company-Portfolio/Cortex/cortex-research.md) | Catalog + score + guided remediation for software services, APIs, and ML models — same function as Endpoint Visibility (Tanium/Ivanti), just applied to engineering assets instead of devices |
+| **Agentic Reliability — Observability** | Is my own shipped AI agent product actually working correctly in production? | [Lemma](../03_Industry-Intelligence/Company-Portfolio/Lemma/lemma-research.md) | Causal trace-based detection of silent semantic failures in a company's own deployed agent, with automated remediation (PR/API) closing the loop |
 | **Secrets & Credentials** | Are secrets and non-human credentials protected? | [1Password](../03_Industry-Intelligence/Company-Portfolio/1Password/1password-research.md), HashiCorp Vault, C1 (Agentic Vault) | Vaulting, rotation, NHI governance. C1's Agentic Vault (July 2026) is a genuine new entrant using workload federation instead of credential delivery |
 | **AI Financial Visibility** | What are we actually spending on AI, and by whom? | [1Password](../03_Industry-Intelligence/Company-Portfolio/1Password/1password-research.md) (AI Spend and Consumption Management) | Financial/spend visibility ONLY — explicitly not behavioral or causal. "Token bills tell you what you spent. [Hybrid Workforce Observability] tells you what you bought." |
 | **Cloud Posture** | Is our cloud environment misconfigured or exposed? | Wiz, Orca | CSPM — scans cloud resource configs for exposure |
@@ -111,6 +113,8 @@ Behavioral, cross-domain detection and response. Artemis, CrowdStrike, and Splun
 
 **C1's Agentic Security & Intelligence is Detection-adjacent, not Detection proper** — identity-configuration risk findings, not broad behavioral correlation. Closer to identity posture management than a SIEM. Full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
 
+**Closes the loop automatically?** Generally no — Detection-layer tools correlate and alert; response is typically routed to a human or a separate SOAR/incident-response workflow, not resolved automatically by the detection layer itself.
+
 ---
 
 ### Telemetry Visualization & Aggregation
@@ -151,6 +155,8 @@ Tanium and Ivanti generate state and inventory truth — is the device compliant
 
 **What this layer cannot do:** explain *why* something happened, trace causal chains, or reason about intent. It can tell you a process ran or a file changed — it cannot tell you what an agent was trying to accomplish or what it read into context before acting.
 
+**Closes the loop automatically?** Partially — patch/remediation actions can be automated once a policy is defined (this is Tanium's core strength, and the basis of the ITOM AI Prime partnership with ServiceNow), but the underlying visibility itself is passive; automation lives in a connected orchestration layer, not the visibility layer itself.
+
 ---
 
 ### Hybrid Workforce Observability
@@ -162,6 +168,38 @@ This is a distinct layer from Endpoint Visibility, not a subset of it — the sa
 **Why this layer is called out specifically:** nobody else operates here with this depth. It sits adjacent to Detection and Identity & Access (an agent's commit identity not matching its SSO identity is a real identity governance signal, surfaced only because Origin sees the endpoint causally) but its core job — reconstructing intent and causality for both human and AI activity — is unique enough to deserve its own layer.
 
 **C1's Runtime Governance is the closest a governance-layer product has come to this territory** — real-time enforcement per tool call, but requires the agent's traffic to route through C1's gateway. Origin requires no enrollment at all. Governance vs. observation, not a clean substitute either way — full comparison in [c1-research.md](../03_Industry-Intelligence/Company-Portfolio/C1/c1-research.md).
+
+**Important boundary, worth being precise about:** Origin's scope is genuinely agent-specific, not just "AI usage" broadly — it covers coding/computer-use agents (Claude Code, Cursor, Copilot) acting on an employee's own endpoint, alongside direct human AI tool use. This is not the same territory as Agentic Reliability below — Origin watches *internal* tool use on *employee* machines; Agentic Reliability watches agents a company *built and shipped* as its own product. Different object, different environment, no real overlap.
+
+**Closes the loop automatically?** No — Origin surfaces causal findings (via dashboard, or via query through Claude/MCP) for a human to act on. Deep, causal Observability does not automatically imply automated remediation — see the Agentic Reliability comparison table below for why this matters as a second, independent axis.
+
+---
+
+### Agentic Reliability
+
+A new layer, genuinely distinct from Hybrid Workforce Observability despite the surface-level similarity (both watch "agent behavior"). The object being watched is different: Origin watches internal employee tool use; this layer watches whether a company's *own* AI product — built and shipped to its *own* customers — is actually working. Split into two sub-rows using the same **visibility vs. observability** distinction already established elsewhere in this map.
+
+**Visibility — [Cortex](../03_Industry-Intelligence/Company-Portfolio/Cortex/cortex-research.md):** catalogs services, APIs, and ML models, scores them against defined engineering standards (code coverage, vulnerability SLAs, package freshness), and drives guided remediation (scaffolding, org-wide initiatives). Aggregates signals already produced by other tools (Datadog, Snyk, PagerDuty) rather than reconstructing causal chains itself — structurally the same function Tanium/Ivanti perform for devices, applied to software services instead.
+
+**Observability — [Lemma](../03_Industry-Intelligence/Company-Portfolio/Lemma/lemma-research.md):** one trace per agent execution, reconstructing the causal sequence of a live production run to catch **silent semantic failures** — an agent that completes without crashing but got the task wrong (loop, bad tool call, misread intent). The differentiator: automated remediation closes the loop in the same workflow, proposing a fix and opening a PR directly, not just flagging the failure.
+
+**Why these two don't compete with each other, or with Origin:** Cortex answers "do we even have visibility into what exists and whether it meets our bar" — an earlier-stage question. Lemma answers "why did this specific live run fail, and can it self-correct" — a later-stage, causal question. Origin answers a structurally different question again — what is my *workforce* (human + internal agents) doing, not what is my *product* doing. Three genuinely different buyers inside the same company: IT/Security (Origin), Engineering leadership (Cortex), and the team that built and owns the shipped agent (Lemma).
+
+### The Full Three-Way Comparison: Origin vs. Cortex vs. Lemma
+
+Worth capturing explicitly, since the surface-level similarity ("they all watch AI/agent stuff") hides two genuinely different axes worth separating cleanly.
+
+| | Origin (Hybrid Workforce Observability) | Cortex (Agentic Reliability — Visibility) | Lemma (Agentic Reliability — Observability) |
+|---|---|---|---|
+| **What it watches** | Internal employees + agents on their own endpoints | Software services, APIs, ML models in the engineering catalog | A company's own shipped AI agent product, live in production |
+| **Visibility vs. Observability** | Observability — causal chain (prompt → reasoning → action → outcome) | Visibility — state snapshot scored against a standard | Observability — causal trace of a live execution |
+| **Does it close the loop automatically?** | No — surfaces findings for a human (or another system via query/MCP) to act on | No — guided remediation (scaffolding, initiatives), still human-driven | **Yes** — detects root cause and delivers a fix directly (PR or API), no human step required |
+| **The buyer inside the company** | IT / Security | Engineering leadership | The team that owns the shipped agent product |
+| **The core question answered** | "What is my workforce actually doing?" | "Do we have an accurate, standards-scored inventory of our services?" | "Is my own AI product actually working, and can it self-correct?" |
+
+**The key insight this table makes explicit:** "Observability" alone doesn't imply automated remediation — Origin and Lemma are both genuinely Observability-layer (deep, causal), but only Lemma closes the loop with automated action. This is a second, independent axis from the visibility/observability split, worth tracking separately as this ecosystem evolves — a company can be deep on causal reconstruction and still leave the fix entirely to a human, or vice versa.
+
+**Why Origin doesn't move to Agentic Reliability even though it clearly does causal observability of agents:** the object being watched is the primary axis this layer split is built on, not the mechanism. Origin watches internal employee/workforce tool use; Agentic Reliability watches whether a company's own shipped product works. Even if Origin eventually adds automated remediation, it would still belong in Hybrid Workforce Observability — because it's watching a different *thing*, not because it lacks automation.
 
 ---
 
@@ -222,6 +260,7 @@ Across nearly every layer above, a consistent gap keeps appearing: **agent const
 - **Telemetry Visualization (Grafana) sits underneath, not beside, the security-native layers** — it's where other layers' data often gets seen, and it's a live example of CI/CD supply chain risk in its own right (the May 2026 GitHub breach)
 - **Data Pipeline & Routing (Cribl) is genuinely distinct from Telemetry Visualization** — the pipe vs. the destination, and the EDR vendors acquiring competing pipeline tools (CrowdStrike/Onum, Palo Alto/Observe AI, SentinelOne/Chronosphere) is a real structural signal about who wants to own the connective layer
 - **Axonius extends Endpoint Visibility into full asset attack-surface visibility (CAASM)** — broader than Tanium/Ivanti's endpoint-first scope, and its Verified Assets push makes the same upstream-data-quality argument already seen with Lumos, applied to asset inventory instead of identity governance
+- **Agentic Reliability is a genuinely new layer, not a subset of Hybrid Workforce Observability** — the object being watched is different: Origin watches internal employee tool use, Cortex/Lemma watch whether a company's own shipped AI product actually works. Cortex (Visibility) and Lemma (Observability) mirror the exact same distinction already used for Endpoint Visibility vs. Origin, just applied one layer up the stack
 
 ---
 
@@ -238,6 +277,8 @@ Across nearly every layer above, a consistent gap keeps appearing: **agent const
 | Origin | https://www.originhq.com |
 | 1Password — AI Spend and Consumption Management | https://1password.com/press/2026/july/1password-introduces-ai-spend-and-consumption-management |
 | Cribl — What is an Observability Pipeline | https://cribl.io/blog/the-observability-pipeline/ |
+| Cortex | https://www.cortex.io |
+| Lemma | https://www.uselemma.ai |
 | Axonius — Adapt 2026 AI-Powered Remediation | https://www.axonius.com/newsroom/press-release/axonius-delivers-ai-powered-remediation |
 | Tanium & ServiceNow — ITOM AI Prime Partnership | https://www.businesswire.com/news/home/20260506341909/en/Tanium-Combines-Forces-with-ServiceNow-to-Deliver-New-Autonomous-IT-Solution-Powered-by-Industry-Leading-Platforms |
 | ConductorOne | https://www.conductorone.com |

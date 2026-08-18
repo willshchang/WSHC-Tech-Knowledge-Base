@@ -9,9 +9,13 @@
 
 ## What This Is
 
-This is my own operating philosophy for CSE/TAM/CSM-style roles — built from bridging 14+ years of enterprise IT operations (AHS, Apple) into customer-facing technical roles. It's not company-specific. This is the framework I bring into any room, then adapt to whatever company I'm talking to.
+**Customer Success is domain agnostic.** The only question that matters is: who is your customer? Across consumer electronics, enterprise clinical tech, and now SaaS, the answer has been consistent — the end user. Tech is tech, regardless of domain — SaaS, FinTech, HealthTech, EdTech, IT as a Service — the fundamental goal is the same: improve the end user's work experience through the technology provided.
 
-It started as **4L** — Land, Launch, Lifecycle, Longevity — mapping the customer journey against internal role handoffs (BDR → AE → TAM → CXE). I evolved it into **4S** because nobody wants to talk about "4L" when the whole point is retention, not loss. Same underlying logic, better name, and it scales more cleanly as a personal brand.
+This is my own operating philosophy for CSE/TAM/CSM-style roles, built from bridging 15+ years of enterprise IT operations into customer-facing technical roles. It's not company-specific — it's the framework I bring into any room, then adapt to whatever company I'm talking to. The customer journey typically maps against internal role handoffs (BDR → AE → TAM → CXE), but the core feedback loop doesn't change regardless of a given company's specific structure.
+
+![Feedback Loop in Customer Success](feedback-loop-in-customer-success.png)
+
+Three connectors hold this together: a healthy **Feedback Loop** (usually TAM/CSE/CSM-owned), a clear **Customer Journey** (deal secured → renewal → expansion → repeat, in partnership with GTM), and a functional **Internal Escalation Path & Stakeholder Map** (who closes what gap). The person owning the single point of contact sits at the center — balancing relationship-building with enough technical depth to translate features into value realization on both ends.
 
 This doc consolidates every version of this framework I've built across different company playbooks into one canonical reference.
 
@@ -19,7 +23,7 @@ This doc consolidates every version of this framework I've built across differen
 
 ## The 4S Framework
 
-### 1. Secure (Prospection)
+### 1. Secure (Acquisition)
 
 Earn the right to the customer's time before onboarding even starts. Understand their current state, their pain, their compliance obligations, what success actually means to them.
 
@@ -153,7 +157,7 @@ This entire framework comes directly out of running an internal customer-success
 - **Customer impact beats internal impact, always** — when systems can be rebuilt but customer relationships often can't
 - **Triage is not diagnosis** — knowing which one a situation calls for is half the job
 - **The technical bar is credibility, not engineering depth** — knowing the right question beats knowing every answer
-- **This framework isn't borrowed from a textbook** — it's a direct translation of 14+ years running this exact motion internally, just without the external-facing title
+- **This framework isn't borrowed from a textbook** — it's a direct translation of 15+ years running this exact motion internally, just without the external-facing title
 
 ---
 

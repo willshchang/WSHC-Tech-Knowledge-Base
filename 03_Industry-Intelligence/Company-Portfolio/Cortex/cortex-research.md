@@ -99,9 +99,9 @@ Cortex's more recent framing leans into **AI EngOps** — engineering operations
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
-**New layer: Agentic Reliability — Visibility sub-row.** Cortex answers "do we have an accurate, standards-scored inventory of our services and engineering assets, and can developers act on gaps guided by that inventory." Distinct from Lemma (Observability sub-row of the same layer, causal tracing of live agent production behavior). See `ztia-ecosystem-map.md` for the full layer breakdown.
+**New layer: Agentic Reliability — Visibility sub-row.** Cortex answers "do we have an accurate, standards-scored inventory of our services and engineering assets, and can developers act on gaps guided by that inventory." Distinct from Lemma (Observability sub-row of the same layer, causal tracing of live agent production behavior). See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 **What this layer cannot do:** Cortex doesn't reconstruct why a specific agent run failed, doesn't trace causal chains, and isn't scoped to AI agent behavior specifically — it's a general engineering visibility and standards-enforcement layer that increasingly incorporates AI-driven features, not an AI-agent-native observability tool.
 

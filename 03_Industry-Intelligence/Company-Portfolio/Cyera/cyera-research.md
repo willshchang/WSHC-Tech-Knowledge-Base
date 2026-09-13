@@ -142,9 +142,9 @@ Acquired to provide traceable data access specifically for AI agents — trackin
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
-**Layer: Discovery & Context — Data.** Cyera discovers and classifies sensitive data across environments — structurally the same category of problem as Dosu's knowledge-grounding work, just applied to data instead of codebase context. See `ztia-ecosystem-map.md` for the full layer breakdown.
+**Layer: Discovery & Context — Data.** Cyera discovers and classifies sensitive data across environments — structurally the same category of problem as Dosu's knowledge-grounding work, just applied to data instead of codebase context. See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 ---
 

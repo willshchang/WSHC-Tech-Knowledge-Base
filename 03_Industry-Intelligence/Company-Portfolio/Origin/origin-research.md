@@ -162,11 +162,11 @@ This mirrors the same insight from the Dosu/Cyera comparison: **the interesting 
 
 ---
 
-## Origin-Overpower: What Origin Adds on Top of Every ZTIA Layer
+## Origin-Overpower: What Origin Adds on Top of Every ZTAI Layer
 
 This section makes the strongest, most specific case for Origin's differentiation — not by replacing any layer, but by showing what each layer *cannot* see that Origin can. Origin doesn't compete with any single layer below; it sits underneath all of them, seeing the ground truth every other layer has to infer or go without.
 
-| ZTIA Layer | What That Layer Already Does | What Origin Adds That Layer Cannot See |
+| ZTAI Layer | What That Layer Already Does | What Origin Adds That Layer Cannot See |
 |---|---|---|
 | **Network** | Controls what can reach what — identity-verified connectivity, segmentation | Network tools see *that* a connection happened. Origin sees *why* — what prompted the agent to make that network call, what local file or credential it read into context first |
 | **Identity & Access** | Governs whether an identity should be here — SSO, lifecycle, entitlement reviews | IAM tools trust that the identity making a request is who it claims to be. Origin catches the mismatch — an agent's commit identity not matching its SSO identity — a signal IAM tools have no visibility into because it happens at the endpoint, not the directory |

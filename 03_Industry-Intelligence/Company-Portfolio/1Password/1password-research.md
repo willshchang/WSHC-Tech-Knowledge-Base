@@ -73,7 +73,7 @@ Combines 1Password Enterprise Password Manager and 1Password SaaS Manager:
 
 ### AI Spend and Consumption Management (Public Preview, July 2026)
 
-Tracks AI token spend across Anthropic, Cursor, and OpenAI via admin API keys — consumption visibility by vendor, team, user, model, with budget alerts. **Important distinction:** this is financial/spend visibility only — it does not trace behavioral causality or what an agent actually did with that spend. See `ztia-ecosystem-map.md` for how this fits alongside Hybrid Workforce Observability (Origin).
+Tracks AI token spend across Anthropic, Cursor, and OpenAI via admin API keys — consumption visibility by vendor, team, user, model, with budget alerts. **Important distinction:** this is financial/spend visibility only — it does not trace behavioral causality or what an agent actually did with that spend. See `ZTAI-ecosystem-map.md` for how this fits alongside Hybrid Workforce Observability (Origin).
 
 ---
 
@@ -138,7 +138,7 @@ The API is what moves 1Password from a consumer product into an enterprise secur
 
 ## ZTIA Layer Placement
 
-**Layer: Secrets & Credentials, plus AI Financial Visibility.** See `ztia-ecosystem-map.md` for the full layer breakdown and how 1Password's two distinct capabilities (vaulting/secrets vs. spend tracking) map to different layers of the stack.
+**Layer: Secrets & Credentials, plus AI Financial Visibility.** See `ZTAI-ecosystem-map.md` for the full layer breakdown and how 1Password's two distinct capabilities (vaulting/secrets vs. spend tracking) map to different layers of the stack.
 
 ---
 

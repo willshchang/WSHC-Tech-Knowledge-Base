@@ -161,7 +161,7 @@ A useful cross-company framework describing where different identity security pl
 | **Governance** | Lumos | Whether agents have the right access, and whether it's being reviewed |
 | **Data** | Cyera | What agents are actually touching, and whether they should be |
 
-**Simplified:** IdP answers "who you are." IGA (Lumos) answers "whether your access is appropriate." An identity-aware network answers "what you can reach." This maps closely onto the broader ZTIA layer framework already built out elsewhere in this KB — see `ztia-ecosystem-map.md`.
+**Simplified:** IdP answers "who you are." IGA (Lumos) answers "whether your access is appropriate." An identity-aware network answers "what you can reach." This maps closely onto the broader ZTAI layer framework already built out elsewhere in this KB — see `ZTAI-ecosystem-map.md`.
 
 ---
 
@@ -187,9 +187,9 @@ A useful cross-company framework describing where different identity security pl
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
-**Layer: Identity & Access (Governance specifically)** — Lumos answers whether an identity's access is appropriate and whether it's actively reviewed, distinct from Okta/Entra ID which answer whether the identity itself is authenticated. See `ztia-ecosystem-map.md` for the full layer breakdown.
+**Layer: Identity & Access (Governance specifically)** — Lumos answers whether an identity's access is appropriate and whether it's actively reviewed, distinct from Okta/Entra ID which answer whether the identity itself is authenticated. See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 ---
 

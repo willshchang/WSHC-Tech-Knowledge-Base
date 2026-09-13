@@ -73,6 +73,16 @@ Answers three non-negotiable questions for the agentic era:
 
 An open protocol extending OAuth to secure agent-to-app and app-to-app communication. Traditional OAuth was built for human-to-app interaction (a human approves a permission screen); XAA moves authentication and authorization from ad hoc, point-to-point credentials to the identity layer itself — centrally regulated, policy-driven, auditable. Industry partners supporting XAA include AWS, Box, Google Cloud, Salesforce, and Grammarly.
 
+**Major update — Agent SSO (GA August 24, 2026):** Okta shipped Agent SSO, bringing XAA into core Okta SSO as a first-class, no-additional-cost feature across all 20,000+ Okta SSO customers — not just an add-on or beta program. Agent SSO registers an AI agent as a first-class identity in Universal Directory and issues **short-lived, governed tokens in place of the static API keys agents normally carry**, with admins assigning and revoking agent access through the exact same workflows already used for employees.
+
+**A genuinely significant industry milestone, distinct from Okta's own product news:** the same month, Cross App Access was adopted as the **official Enterprise-Managed Authorization extension for the Model Context Protocol (MCP) itself** — meaning XAA is no longer just an Okta protocol other vendors optionally support, it's becoming part of the actual MCP specification.
+
+**Full governance still requires the paid tier:** Agent SSO (free, XAA-based) only covers agents that speak the XAA standard. Complete governance — including non-XAA agents, full lifecycle management, and behavioral monitoring — remains in the paid **Okta for AI Agents** tier described below.
+
+**The sobering counterpoint, worth remembering precisely:** roughly two and a half weeks before Agent SSO's GA, security researchers demonstrated at Black Hat 2026 that simply opening a GitHub issue was enough to reach CI workflow secrets in Anthropic's and Google's own coding-agent repositories — real production systems from the two labs most invested in agent safety. One industry analysis framed it exactly right: *"The delegation protocol is close to settled, and the operational discipline around it is not close to anything."* A governed identity standard doesn't validate what a RAG pipeline retrieves, and a scoped token calling a tool that itself holds a broad token still has that broad token's effective permissions — delegation chains inherit the widest permission in the chain unless something actively narrows them.
+
+**Also worth remembering — the ownership gap, stated plainly by industry analysts:** *"Nobody owns the agent."* Every functioning non-human identity program starts with an owner, an expiry, and a review cycle. Agents, by contrast, typically get created by a developer in the course of building something, inherit whatever credential was nearest at the time, and never appear on any formal access review — a structural gap that a protocol alone cannot close.
+
 ### Auth for GenAI
 
 Developer-focused tooling embedding identity security directly into AI agent code — secure login for agents, agents calling APIs on behalf of users, explicit user approval for critical autonomous actions, and granular permissions for RAG document retrieval so an agent only accesses authorized content.
@@ -147,8 +157,10 @@ A specialized, sprint-based function focused on New Product Introductions and at
 ## Key Takeaways
 
 - **Okta's core strategic bet is the Identity Security Fabric** — treating identity and data governance as one unified problem, echoing the same thesis emerging independently across the identity security industry (Cyera included)
-- **Okta for AI Agents (GA April 2026)** anchors on the same three questions used across this KB's ZTIA framework: where are my agents, what can they access, what can they do
-- **XAA is a genuine technical innovation** — extending OAuth beyond human-to-app into agent-to-app and app-to-app, with real industry partner backing (AWS, Box, Google Cloud, Salesforce, Grammarly)
+- **Okta for AI Agents (GA April 2026)** anchors on the same three questions used across this KB's ZTAI framework: where are my agents, what can they access, what can they do
+- **XAA is a genuine technical innovation** — extending OAuth beyond human-to-app into agent-to-app and app-to-app, with real industry partner backing (AWS, Box, Google Cloud, Salesforce, Grammarly), and as of August 2026 adopted as MCP's own official Enterprise-Managed Authorization extension
+- **Agent SSO (GA Aug 2026) productized XAA into a free, core feature** across all Okta SSO customers — but full agent governance, and coverage of non-XAA agents, still requires the paid Okta for AI Agents tier
+- **The protocol is maturing faster than operational discipline** — real-world incidents (the Black Hat 2026 CI-secrets exposure in Anthropic's and Google's own repos) show that a governed identity standard alone doesn't close gaps like delegation-chain permission inheritance or unvalidated RAG retrieval
 - **Visibility is ahead of observability** — Okta's discovery and governance layer is more mature than its behavioral analytics layer, a pattern true across the identity industry broadly
 - **Independence is the core differentiator** — no ecosystem lock-in, unlike Microsoft's naturally Microsoft-favoring approach
 
@@ -160,3 +172,4 @@ A specialized, sprint-based function focused on New Product Introductions and at
 |---|---|
 | Okta | https://okta.com |
 | Okta for AI Agents | https://www.okta.com/blog/2026/04/okta-for-ai-agents/ |
+| Okta — Agent SSO General Availability Announcement | https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/ |

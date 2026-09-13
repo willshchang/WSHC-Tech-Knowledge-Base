@@ -215,9 +215,9 @@ SLA compliance percentage reflects the share of tickets resolved within their pr
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
-**Layer: IT Workflow Orchestration (ServiceNow) + Endpoint Visibility (Kandji/MDM), feeding a compliance/governance layer (AuditBoard).** This is a useful real-world example of the same "orchestration consumes ground truth from other layers" pattern seen with ServiceNow/Tanium elsewhere in this KB. See `ztia-ecosystem-map.md`.
+**Layer: IT Workflow Orchestration (ServiceNow) + Endpoint Visibility (Kandji/MDM), feeding a compliance/governance layer (AuditBoard).** This is a useful real-world example of the same "orchestration consumes ground truth from other layers" pattern seen with ServiceNow/Tanium elsewhere in this KB. See `ZTAI-ecosystem-map.md`.
 
 ---
 

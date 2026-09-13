@@ -150,7 +150,7 @@ Detects identity risk across people, service accounts, workloads, and agents —
 | **Tailscale Aperture** | Same "identity replaces secrets" philosophy, applied at the network layer instead of the identity-platform layer — narrower in scope (AI/LLM gateway traffic specifically), not really a substitute |
 | **Auth0, RSA** | Cited among top competitors by market trackers, though positioned in adjacent rather than directly overlapping categories |
 
-*The four comparisons below (Origin, 1Password, Artemis/CrowdStrike, Tailscale Aperture) go deeper than any other company doc in this KB — C1's Launch Week genuinely touches four different ZTIA layers at once, so each comparison is doing real cross-layer work. See `ztia-ecosystem-map.md` for the higher-level layer map these all plug into.*
+*The four comparisons below (Origin, 1Password, Artemis/CrowdStrike, Tailscale Aperture) go deeper than any other company doc in this KB — C1's Launch Week genuinely touches four different ZTAI layers at once, so each comparison is doing real cross-layer work. See `ZTAI-ecosystem-map.md` for the higher-level layer map these all plug into.*
 
 ### ConductorOne vs. Lumos — Detailed Comparison
 
@@ -230,20 +230,20 @@ Aperture (Tailscale's AI governance gateway, alpha Jan 2026) and C1's Agent Runt
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
 **Primary layer: Identity & Access (Governance)** — same core layer as Lumos and Okta IGA.
 
 **Since Launch Week, C1 is genuinely multi-layer**, not just Identity & Access:
 
-| ZTIA Layer | How C1 Shows Up There |
+| ZTAI Layer | How C1 Shows Up There |
 |---|---|
 | **Identity & Access** | Core, original positioning — Unified Identity Graph, access reviews, lifecycle management |
 | **Discovery & Context** | Shadow AI Discovery (Day 1) — finds unowned agents, MCP servers, credentials across endpoint and cloud |
 | **Secrets & Credentials** | Agentic Vault (Day 2) — direct 1Password competitor for agent-specific credential security |
 | **Detection (narrow slice)** | Agentic Security & Intelligence (Day 4) — identity-configuration risk findings, narrower than Artemis/CrowdStrike's broad behavioral correlation |
 
-This mirrors the same pattern already seen with 1Password (Secrets/Credentials + AI Financial Visibility) and Origin (Endpoint + Detection + Identity) — the companies worth tracking closely right now rarely stay inside one clean layer. See `ztia-ecosystem-map.md` for the full layer breakdown.
+This mirrors the same pattern already seen with 1Password (Secrets/Credentials + AI Financial Visibility) and Origin (Endpoint + Detection + Identity) — the companies worth tracking closely right now rarely stay inside one clean layer. See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 ---
 

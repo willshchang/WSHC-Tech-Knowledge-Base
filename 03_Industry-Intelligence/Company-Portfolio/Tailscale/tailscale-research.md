@@ -269,13 +269,33 @@ Tailscale's architecture is intentionally split:
 
 ---
 
-## ZTIA Layer Placement
+## Tailscale PAM — Border0 Acquisition (First-Ever Acquisition)
+
+**Acquired:** March 17, 2026 — Tailscale's first acquisition ever. Border0 was a 7-person, Vancouver-based PAM (Privileged Access Management) startup. The entire team joined Tailscale; founder Andree Toonk became Director of Engineering, leading the resulting PAM effort.
+
+**The problem it addresses, in CEO Avery Pennarun's own words:** *"Once you move from 'Can this machine reach that machine?' to 'Who should be allowed into this database, cluster, or admin interface, for how long, and with what visibility into what happened after they got there?', the problem changes shape a bit. That's where Border0 fits."* This is the network-connectivity question (Tailscale's original domain) evolving into the privileged-access question (a genuinely different, harder problem).
+
+**What Tailscale PAM does:**
+- One-click access to specific servers, databases, Kubernetes clusters, and web applications — no standing passwords, no API keys handed out
+- Protocol-aware controls, session recording, and approval workflows layered on top of Tailscale's existing connectivity
+- Every session — human or AI agent — logged and scopable to a specific time window, for audit and compliance
+- Fully integrated with a customer's existing tailnet, identities, and policies from day one (not a bolt-on integration — Tailscale acquired the engineers specifically to build it natively into the core product over time)
+
+**The division of labor, cleanly stated by Tailscale itself:** the connectivity platform (Tailscale core) handles *can this reach that* — connectivity, identity-based permissions, network-layer auditability. Border0's layer handles *who gets in, for how long, with what visibility after* — protocol-aware controls, session visibility, approval workflows. Together: a full stack from network reachability to privileged session governance.
+
+**Why this matters strategically:** this puts Tailscale in direct territory with **1Password, C1's Agentic Vault, and CyberArk** (the PAM incumbent Palo Alto Networks is acquiring for ~$25B — see `palo-alto-networks-research.md` once built). Tailscale is no longer just the network gate; it's building toward owning the full path from "can you reach it" to "what did you do once you were in."
+
+**A related but separate development worth noting:** Tailscale also shifted its pricing model from usage-based to flat per-seat billing (April 2026, roughly six weeks after the Border0 acquisition) — Standard at $8/seat/month, Premium at $18/seat/month. Two moves that read together: one adds a compliance layer that's genuinely hard for open-source alternatives (like Headscale, the open-source reimplementation of Tailscale's control plane) to casually replicate; the other makes the cost of *not* using that layer more predictable — and for some teams, higher.
+
+---
+
+## ZTAI Layer Placement
 
 **Layer: Network**
 
-Tailscale is the clearest example of identity-first mesh networking within the Network layer of the ZTIA stack — direct WireGuard tunnels, no chokepoints, no broadcast noise (unlike Layer 2 emulated-switch competitors). ACLs enforce least-privilege reachability for both human and agentic connections. See `ztia-ecosystem-map.md` for the full layer breakdown.
+Tailscale is the clearest example of identity-first mesh networking within the Network layer of the ZTAI stack — direct WireGuard tunnels, no chokepoints, no broadcast noise (unlike Layer 2 emulated-switch competitors). ACLs enforce least-privilege reachability for both human and agentic connections. See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
-**What this layer cannot do on its own:** see what happens after a connection is made (that's Detection/Hybrid Workforce Observability), govern SaaS OAuth tokens issued directly between browser and app, or inspect endpoint-level behavior. Aperture extends Tailscale's reach into AI governance specifically, but the core Network layer scope remains connectivity and access control, not behavioral observability.
+**What this layer cannot do on its own:** see what happens after a connection is made (that's Detection/Hybrid Workforce Observability), govern SaaS OAuth tokens issued directly between browser and app, or inspect endpoint-level behavior. Aperture extends Tailscale's reach into AI governance specifically, and the Border0-powered PAM offering extends it into privileged session governance — but the core Network layer scope remains connectivity and access control as the foundation everything else builds on.
 
 ---
 
@@ -285,8 +305,9 @@ Tailscale is the clearest example of identity-first mesh networking within the N
 - **The architecture is intentionally split** — stateless data plane (infinitely scalable, no shared memory) and stateful control plane (coordination only, never touches actual data)
 - **Tags and Subnet Routers solve machine identity and legacy device access** at scale without individual key management
 - **Aperture is a significant strategic extension** — bringing the "identity eliminates secrets" philosophy to AI/LLM API traffic, positioning Tailscale directly in the AI governance conversation
+- **Tailscale PAM (via the Border0 acquisition, March 2026 — Tailscale's first-ever acquisition) extends the same philosophy into privileged access management** — one-click, time-scoped access to servers, databases, and Kubernetes clusters, with full session recording. Directly overlapping territory with 1Password, C1's Agentic Vault, and CyberArk
 - **Go-to-market is bottom-up (PLG)** — individual developer adoption drives enterprise adoption, not top-down executive sales
-- **ZTIA placement: Network layer** — controls what can reach what; does not on its own provide behavioral observability or SaaS token governance
+- **ZTAI placement: Network layer** — controls what can reach what; does not on its own provide behavioral observability or SaaS token governance
 
 ---
 
@@ -299,3 +320,5 @@ Tailscale is the clearest example of identity-first mesh networking within the N
 | Tailscale — Cleric tsnet Integration | https://tailscale.com/blog/cleric-tsnet-automate-software-operations |
 | Tailscale API Documentation | https://tailscale.com/api |
 | Tailscale Open Source Repository | https://github.com/tailscale/tailscale |
+| Tailscale — Border0 Joins Tailscale (Announcement) | https://tailscale.com/blog/border0-joins-tailscale |
+| BetaKit — Tailscale Makes First Acquisition with Border0 | https://betakit.com/tailscale-makes-first-acquisition-with-border0-purchase/ |

@@ -103,9 +103,9 @@ This is a genuinely important structural trend, not just a Cribl-specific detail
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
-**New layer: Data Pipeline & Routing** — distinct from Telemetry Visualization & Aggregation (Grafana). Grafana is a *destination* where telemetry gets visualized and correlated. Cribl is the *pipe* — the routing and volume-reduction layer that decides what data reaches which destination, in what shape, before it ever arrives. See `ztia-ecosystem-map.md` for the full layer breakdown.
+**New layer: Data Pipeline & Routing** — distinct from Telemetry Visualization & Aggregation (Grafana). Grafana is a *destination* where telemetry gets visualized and correlated. Cribl is the *pipe* — the routing and volume-reduction layer that decides what data reaches which destination, in what shape, before it ever arrives. See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 **What this layer cannot do:** Cribl doesn't detect threats, visualize dashboards, or store data long-term itself (aside from Cribl Lake as an optional cheap destination) — it's infrastructure that every other layer depends on to actually receive usable data, not a destination in its own right.
 
@@ -117,7 +117,7 @@ This is a genuinely important structural trend, not just a Cribl-specific detail
 - **The core value proposition is volume reduction plus flexibility** — 30-50% data volume cuts, reuse existing agents across multiple destinations, trial new platforms without infrastructure rip-and-replace
 - **The EDR-vendor pipeline acquisition trend is a real structural signal** — CrowdStrike, Palo Alto, and SentinelOne all acquired competing pipeline tooling (Onum, Observe AI, Chronosphere) in Q4 2025, creating genuine tension between platform-native and neutral pipeline models
 - **Cribl explicitly frames agentic AI as a data infrastructure problem** — Clint Sharp's CNBC appearance positioned AI agent telemetry as needing the same routing/reduction discipline as any observability data, just at much higher volume
-- **This deserves its own ZTIA layer, distinct from Grafana** — Data Pipeline & Routing (the pipe) vs. Telemetry Visualization & Aggregation (the destination)
+- **This deserves its own ZTAI layer, distinct from Grafana** — Data Pipeline & Routing (the pipe) vs. Telemetry Visualization & Aggregation (the destination)
 
 ---
 

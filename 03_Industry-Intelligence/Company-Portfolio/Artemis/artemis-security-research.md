@@ -145,7 +145,7 @@ Reference: https://claude.com/customers/artemis
 
 **Layer: Detection**
 
-Artemis is a Detection-layer company, alongside CrowdStrike — this is the job, regardless of deployment mechanism. See `ztia-ecosystem-map.md` for the full layer breakdown and how Detection connects to every other layer.
+Artemis is a Detection-layer company, alongside CrowdStrike — this is the job, regardless of deployment mechanism. See `ZTAI-ecosystem-map.md` for the full layer breakdown and how Detection connects to every other layer.
 
 | Angle | Detail |
 |---|---|
@@ -167,7 +167,7 @@ Artemis is a Detection-layer company, alongside CrowdStrike — this is the job,
 - Technical differentiator: **federated query architecture + per-org dynamic data model** — not generic rules, not static ingestion
 - Already processing **15,000TB/day** and reducing MTTD/MTTR by **94%** for enterprise customers
 - Deep **Anthropic/Claude** integration — one of a select few security companies in direct collaboration
-- **Artemis sits in the ZTIA Detection layer** alongside CrowdStrike — federated telemetry from Network, Identity & Access, and Endpoint layers feeds its behavioral correlation model
+- **Artemis sits in the ZTAI Detection layer** alongside CrowdStrike — federated telemetry from Network, Identity & Access, and Endpoint layers feeds its behavioral correlation model
 
 ---
 

@@ -85,7 +85,7 @@ Grafana Labs expanded from a pure visualization tool into a full observability s
 
 **Later development (May 21, 2026):** the compromise was traced back to the broader TanStack npm supply chain attack — situating this incident within a wider wave of software supply chain compromises affecting the open-source ecosystem around the same period.
 
-**Why this is a genuinely relevant case study:** this is a real, recent, well-documented example of a CI/CD pipeline misconfiguration (the "Pwn Request" pattern) leading to a significant credential compromise at a company whose own product is used for security/observability — a notable irony, and a clean, current illustration of supply chain and CI/CD security risk that connects directly to broader ZTIA governance themes.
+**Why this is a genuinely relevant case study:** this is a real, recent, well-documented example of a CI/CD pipeline misconfiguration (the "Pwn Request" pattern) leading to a significant credential compromise at a company whose own product is used for security/observability — a notable irony, and a clean, current illustration of supply chain and CI/CD security risk that connects directly to broader ZTAI governance themes.
 
 ---
 
@@ -106,9 +106,9 @@ Grafana Labs expanded from a pure visualization tool into a full observability s
 
 ---
 
-## ZTIA Relevance
+## ZTAI Relevance
 
-Grafana isn't an identity security company — it's a general observability/monitoring platform. Its relevance to the broader ZTIA ecosystem thinking is more structural than direct: Grafana is a strong candidate for the **visualization/telemetry aggregation layer** that other tools in the stack (Detection platforms, Endpoint tools, even Identity & Access logs) can feed into for unified dashboarding. The 2026 move toward "advanced SOC/security analytics" inside the All-in-One suite suggests Grafana itself may be edging toward overlap with the Detection layer over time, rather than staying purely infrastructure-focused. See `ztia-ecosystem-map.md` for how this fits alongside the rest of the stack.
+Grafana isn't an identity security company — it's a general observability/monitoring platform. Its relevance to the broader ZTAI ecosystem thinking is more structural than direct: Grafana is a strong candidate for the **visualization/telemetry aggregation layer** that other tools in the stack (Detection platforms, Endpoint tools, even Identity & Access logs) can feed into for unified dashboarding. The 2026 move toward "advanced SOC/security analytics" inside the All-in-One suite suggests Grafana itself may be edging toward overlap with the Detection layer over time, rather than staying purely infrastructure-focused. See `ZTAI-ecosystem-map.md` for how this fits alongside the rest of the stack.
 
 ---
 

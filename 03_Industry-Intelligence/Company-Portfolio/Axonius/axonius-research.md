@@ -98,9 +98,9 @@ Reported talks of Cisco pursuing a roughly $2B acquisition of Axonius surfaced i
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
-**Primary layer: Endpoint Visibility** — alongside Tanium and Ivanti, in the same "state snapshots, inventory, query-based" category defined elsewhere in this KB. But Axonius's actual scope is broader than pure endpoint — it spans devices, SaaS applications, cloud resources, identities, and (as of 2026) OT/IoT, making it closer to a full **asset attack-surface visibility layer** than endpoint-specific tooling alone. See `ztia-ecosystem-map.md` for the full layer breakdown.
+**Primary layer: Endpoint Visibility** — alongside Tanium and Ivanti, in the same "state snapshots, inventory, query-based" category defined elsewhere in this KB. But Axonius's actual scope is broader than pure endpoint — it spans devices, SaaS applications, cloud resources, identities, and (as of 2026) OT/IoT, making it closer to a full **asset attack-surface visibility layer** than endpoint-specific tooling alone. See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 **What this layer still cannot do:** like Tanium and Ivanti, Axonius tells you *what exists and what's configured* — it does not explain *why* an agent or user did something, the way Origin's Hybrid Workforce Observability layer does. Axonius's new Verified Assets and Exposures products push toward better-trusted, better-owned findings, but the core job remains inventory and posture, not causal behavioral explanation.
 

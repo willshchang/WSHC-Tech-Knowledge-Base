@@ -83,9 +83,9 @@ Lemma's central thesis, and the sharpest part of their positioning: **an AI agen
 
 ---
 
-## ZTIA Layer Placement
+## ZTAI Layer Placement
 
-**New layer: Agentic Reliability — Observability sub-row.** Lemma answers "is my own shipped AI agent actually working correctly in production, and can the fix happen automatically." Distinct from Cortex (Visibility sub-row of the same layer) and from Origin's Hybrid Workforce Observability (which watches internal employee AI tool usage, not a company's own deployed agent product). See `ztia-ecosystem-map.md` for the full layer breakdown.
+**New layer: Agentic Reliability — Observability sub-row.** Lemma answers "is my own shipped AI agent actually working correctly in production, and can the fix happen automatically." Distinct from Cortex (Visibility sub-row of the same layer) and from Origin's Hybrid Workforce Observability (which watches internal employee AI tool usage, not a company's own deployed agent product). See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 **What this layer cannot do:** Lemma doesn't govern access, doesn't vault credentials, doesn't discover shadow AI usage — it's scoped specifically to whether an already-deployed, already-governed agent is producing correct outcomes.
 

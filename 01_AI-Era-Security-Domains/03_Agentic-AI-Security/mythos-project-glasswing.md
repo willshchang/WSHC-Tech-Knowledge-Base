@@ -3,7 +3,7 @@
 **Document Type:** Knowledge Article  
 **Author:** Will Chang  
 **Audience:** Knowledge Growth  
-**Last Updated:** May 2026  
+**Last Updated:** September 2026  
 **Official Reference:** https://red.anthropic.com/2026/mythos-preview/  
 
 ---
@@ -94,9 +94,9 @@ This is exactly why **human-in-the-loop controls, runtime enforcement, and audit
 
 ---
 
-## Network Layer Relevance (ZTIA)
+## Network Layer Relevance (ZTAI)
 
-Mythos-class attacks execute autonomous lateral movement, privilege escalation, and credential theft — all Network-layer activities. See `ztia-ecosystem-map.md` for the full layer breakdown.
+Mythos-class attacks execute autonomous lateral movement, privilege escalation, and credential theft — all Network-layer activities. See `ZTAI-ecosystem-map.md` for the full layer breakdown.
 
 | Attack Phase | Network Layer's Role |
 |---|---|
@@ -105,7 +105,7 @@ Mythos-class attacks execute autonomous lateral movement, privilege escalation, 
 | Reconnaissance | Devices outside the trusted network mesh are unreachable — reduces discoverable attack surface |
 | Privilege escalation via network | Subnet routers and segmentation enforce who can reach what segment — contains escalation paths |
 
-> The Network layer doesn't stop Mythos-class vulnerabilities at the code level. It limits what an attacker can reach after initial access — containing the blast radius of autonomous lateral movement. This is one containment layer among several in the ZTIA stack, not a complete defense on its own.
+> The Network layer doesn't stop Mythos-class vulnerabilities at the code level. It limits what an attacker can reach after initial access — containing the blast radius of autonomous lateral movement. This is one containment layer among several in the ZTAI stack, not a complete defense on its own.
 
 ---
 
@@ -115,7 +115,7 @@ Mythos-class attacks execute autonomous lateral movement, privilege escalation, 
 - **Autonomous cyber espionage happened in 2025** — AI conducted 80–90% of a state-sponsored operation with minimal human supervision
 - **The speed gap is the problem** — patch cycles measured in weeks can't keep up with exploits found in hours
 - **Defensive use requires the same governance as offensive risk** — deploying Mythos-class tools creates agents that need identity, access, audit, and kill switch controls
-- **The Network layer's role** — contain blast radius via segmentation and identity-aware connectivity; not a code-level defense, but a critical post-access containment layer in the broader ZTIA stack
+- **The Network layer's role** — contain blast radius via segmentation and identity-aware connectivity; not a code-level defense, but a critical post-access containment layer in the broader ZTAI stack
 
 ---
 

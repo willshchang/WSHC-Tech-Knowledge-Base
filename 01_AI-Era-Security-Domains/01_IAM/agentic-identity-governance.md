@@ -1,9 +1,9 @@
-# Agentic AI Security: Governing Agents Like Identities
+# Agentic Identity Governance: Extending IAM to AI Agents
 
 **Document Type:** Knowledge Article  
 **Author:** Will Chang  
 **Audience:** Knowledge Growth  
-**Last Updated:** May 2026  
+**Last Updated:** September 2026  
 
 ---
 
@@ -98,33 +98,19 @@ These domains all need governance — and none of them are solved by code scanni
 
 ---
 
-## Artemis Security — Agentic Security in Practice
+## Artemis Security — A Detection-Layer Example, Not an IAM One
 
-Artemis (Series A, $70M) builds their entire platform with AI agents writing every line of code. Human engineers set constraints and review outputs — Claude implements.
-
-Design thesis: **humans should bar-raise and direct, not make every individual security decision.**
-
-> "You can't bolt intelligence onto static infrastructure. We started over."
-
-Anthropic published a case study on how Artemis uses Claude as a core engineering collaborator.
-
-### Artemis in the ZTIA Ecosystem
-
-**Layer: Detection.** Artemis's federated query architecture ingests telemetry from Network, Identity & Access, and Endpoint layers — without requiring upfront data ingestion — and correlates it into behavioral attack narratives. See `ztia-ecosystem-map.md` for the full layer breakdown.
-
-**Shared customer base:** Mercury, Wix, Lemonade, Abnormal AI — all Artemis customers, all the type of modern SaaS companies adopting a full modern security stack across every layer, not just detection.
+Artemis is a genuinely relevant company in the broader agentic security conversation, but it's fundamentally a Detection-layer company (behavioral threat correlation), not an IAM one — its full profile lives in `artemis-security-research.md` in the Company-Portfolio, and its ZTAI ecosystem placement lives in `ZTAI-ecosystem-map.md`. Worth knowing it exists as you read this doc, not worth duplicating here.
 
 ---
 
-## The Mythos Context: Why This All Matters Now
+## Why This Governance Gap Is Urgent, Not Theoretical
 
-In November 2025, Anthropic detected and disrupted a real-world AI-assisted cyber espionage campaign where suspected state-sponsored actors used a jailbroken Claude Code to conduct 80–90% of the operation autonomously — reconnaissance, privilege escalation, lateral movement, credential theft, and data exfiltration across ~30 global organizations.
+In November 2025, Anthropic detected and disrupted a real-world AI-assisted cyber espionage campaign — suspected state-sponsored actors used a jailbroken Claude Code to conduct 80–90% of the operation autonomously across ~30 global organizations. In April 2026, Anthropic announced Claude Mythos Preview, a frontier model capable of autonomously finding and exploiting zero-day vulnerabilities at a level no prior model approached.
 
-In April 2026, Anthropic announced Claude Mythos Preview — a frontier model capable of autonomously finding and exploiting zero-day vulnerabilities across every major OS and browser, at a level no prior model approached.
+> This is why agentic IAM governance is urgent, not theoretical — the attack environment already exists.
 
-> This is the attack environment Artemis was built to detect. This is why agentic IAM governance is urgent, not theoretical.
-
-See: `mythos-project-glasswing.md` in this folder for the full breakdown.
+Full breakdown of Mythos and Anthropic's defensive response (Project Glasswing) in `mythos-project-glasswing.md`, in `03_Agentic-AI-Security`.
 
 ---
 
@@ -135,8 +121,8 @@ See: `mythos-project-glasswing.md` in this folder for the full breakdown.
 - **Kill switches and HITL controls** are non-negotiable — autonomous agents need human override capability
 - **Agentic AI doesn't replace security** — code scanning is one slice; identity, network, cloud, and incident response still need humans and dedicated tooling
 - **Okta's approach** treats agents as a natural extension of IAM — same platform, new identity type
-- **Artemis sits in the ZTIA Detection layer** — federated telemetry ingestion across Network, Identity & Access, and Endpoint layers, correlated into behavioral attack narratives
-- **Mythos made this urgent** — autonomous AI-driven attacks at scale are not a future scenario, they already happened
+- **Artemis and Mythos are referenced, not owned, here** — full profiles live in `artemis-security-research.md` (Company-Portfolio) and `mythos-project-glasswing.md` (Agentic AI Security domain)
+- **The attack environment already exists** — autonomous AI-driven attacks at scale are not a future scenario, they already happened
 
 ---
 
@@ -147,8 +133,6 @@ See: `mythos-project-glasswing.md` in this folder for the full breakdown.
 | Okta for AI Agents (GA announcement) | LinkedIn post — Ely Kahn |
 | Resilient Cyber — Agentic IAM deep dive | https://www.resilientcyber.io/p/the-identity-layer-underneath-the |
 | CSO Online — Identity in the Agentic Era | https://www.csoonline.com/article/4163365/what-cisos-need-to-get-right-as-identity-enters-the-agentic-era.html |
-| Anthropic × Artemis Case Study | https://claude.com/customers/artemis |
-| Artemis Security | https://artemissecurity.com |
-| Anthropic — Mythos Preview | https://red.anthropic.com/2026/mythos-preview/ |
-| Anthropic — Project Glasswing | https://www.anthropic.com/glasswing |
 | The Core Strength Network — AI won't kill cyber | LinkedIn post |
+
+*For Artemis and Mythos sourcing, see `artemis-security-research.md` and `mythos-project-glasswing.md` respectively.*

@@ -3,7 +3,7 @@
 **Document Type:** Personal POV / Opinion Piece  
 **Author:** Will Chang  
 **Audience:** Knowledge Growth  
-**Last Updated:** May 2026  
+**Last Updated:** September 2026  
 
 ---
 
@@ -74,13 +74,7 @@ For human identities, governance asks:
 - Is that access still appropriate?
 - Did anything change?
 
-For agentic identities, governance needs to ask all of that **plus:**
-
-- What conditions is this agent operating under?
-- Who defined those conditions, and when?
-- What can this agent trigger autonomously vs. what requires human approval?
-- What is the kill switch, and how fast does it work?
-- What did this agent actually do — full audit trail, not just access granted?
+For agentic identities, governance needs to ask more than that — what conditions is an agent operating under, who defined those conditions, what can it trigger autonomously versus what requires human approval, and what did it actually do. The industry's own answer to this (Okta's "where are my agents / what can they connect to / what can they do" framework, and the broader agentic IAM landscape) is covered in full in `agentic-identity-governance.md` — this piece is about the philosophy underneath that framework, not a restatement of it.
 
 > Visibility and observability aren't optional in agentic systems. They are the governance. Without them, you have no way of knowing when a condition is wrong until the damage is already done.
 
@@ -88,7 +82,7 @@ For agentic identities, governance needs to ask all of that **plus:**
 
 ## The Network Layer Angle: Identity-Aware Networking as a Safety Layer
 
-This is where my background in identity security intersects directly with the **Network layer** of the ZTIA stack.
+This is where my background in identity security intersects directly with the **Network layer** of the ZTAI stack.
 
 An identity-aware network — Tailscale is the clearest example — ties every connection to a verified identity, human or machine. ACLs define exactly what each identity can reach. Nothing connects that isn't explicitly permitted.
 
@@ -100,7 +94,7 @@ For agentic workloads, this matters more than most people realize:
 
 This layer doesn't govern the conditions themselves. It doesn't inspect what an agent does after it connects — that's the job of Detection and Hybrid Workforce Observability layers. But it controls **what the agent can reach** — and in a world where agents execute at machine speed, constraining the reachable surface is one of the most important safety controls available.
 
-> Network-layer least privilege is agentic safety infrastructure. Not sufficient on its own — but foundational, and it's just one layer of a much larger ZTIA stack. See `ztia-ecosystem-map.md` for how this connects to Identity & Access, Detection, and Hybrid Workforce Observability.
+> Network-layer least privilege is agentic safety infrastructure. Not sufficient on its own — but foundational, and it's just one layer of a much larger ZTAI stack. See `ZTAI-ecosystem-map.md` for how this connects to Identity & Access, Detection, and Hybrid Workforce Observability.
 
 ---
 
@@ -137,6 +131,5 @@ Identity security was always the control plane of the enterprise. In the agentic
 |---|---|
 | Anthropic — Mythos Preview (Frontier Red Team) | https://red.anthropic.com/2026/mythos-preview/ |
 | Anthropic — Project Glasswing | https://www.anthropic.com/glasswing |
-| Okta for AI Agents — Blueprint for Secure Agentic Enterprise | https://www.okta.com/blog/2026/04/okta-for-ai-agents/ |
-| Resilient Cyber — Identity Layer Underneath the Agentic Enterprise | https://www.resilientcyber.io/p/the-identity-layer-underneath-the |
-| CSO Online — Identity in the Agentic Era | https://www.csoonline.com/article/4163365/what-cisos-need-to-get-right-as-identity-enters-the-agentic-era.html |
+
+*For sourcing on Okta's agentic framework and the broader agentic IAM landscape, see `agentic-identity-governance.md`.*

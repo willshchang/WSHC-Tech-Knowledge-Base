@@ -36,7 +36,7 @@ Worth understanding precisely, since it explains both the breadth of the current
 
 **Why the company took a while to find its footing:** integrating four separate product lineages (remote support, privileged identity, endpoint privilege, and the original BeyondTrust's own PAM suite) into one coherent platform was a genuine multi-year undertaking — not unlike a company finding its own identity after a series of mergers. The **Pathfinder** platform (discussed below) represents that integration finally landing.
 
-**Current leadership:** CEO Janine Seebeck; CTO Morey Haber (a widely recognized identity security thought leader and frequent industry commentator); Matt Dircks (Bomgar's original CEO who led the 2018 combination) now serves as Executive Chairman.
+**Current leadership:** CEO Janine Seebeck; CTO **Marc Maiffret** (rejoined BeyondTrust August 2021 — 20+ years of security leadership including eEye Digital Security, FireEye, and SpaceX; co-discovered and named Code Red, the first major Microsoft computer worm; has testified before Congress on national security matters); Morey Haber serves as **Chief Security Officer**, not CTO (a correction from an earlier version of this doc) — a widely recognized identity security thought leader and frequent industry commentator, overseeing security and governance for BeyondTrust's own corporate and cloud-based solutions; Matt Dircks (Bomgar's original CEO who led the 2018 combination) now serves as Executive Chairman.
 
 **A live, unresolved thread worth knowing:** reports surfaced in early 2026 that Francisco Partners has explored a potential multi-billion-dollar sale of the company — no deal announced as of this writing. Possible outcomes range from a sale to another PE firm, acquisition by a larger cybersecurity company, or an eventual IPO. The 2024 Entitle acquisition (below) suggests the company was still in build mode rather than actively preparing for an immediate exit, at least as of that decision point.
 
@@ -61,6 +61,8 @@ BeyondTrust's current positioning: **"the Privilege-Centric Identity Security Le
 - **Endpoint Privilege Management** (Windows, Mac, Linux) — enforces least-privilege at the endpoint level, removing standing local admin rights
 - **Identity Security Insights** — described as an "identity visibility and intelligence platform (IVIP)" — the shared context layer powering Pathfinder
 
+**Worth being precise: this is Visibility with analytics, not true Observability.** Using the same distinction already established elsewhere in this KB (via Origin's own writing, tracing back to Kálmán's 1960 control theory definition — visibility is state aggregation against a rule, observability is causal reconstruction of *why* something happened): Identity Security Insights correlates data BeyondTrust already has, plus third-party signals, into a unified view and applies AI/ML to reduce noise and surface recommendations. That's genuinely useful, and BeyondTrust's own marketing does use the word "observability" loosely (a blog tag, an analyst evaluation category) — but it's not reconstructing a live, step-by-step causal trace the way Origin or Lemma do. This places BeyondTrust in the same category as Cortex and Tanium/Ivanti on this specific axis, not Origin or Lemma.
+
 ---
 
 ## Phantom Labs® — The Research Credibility Layer
@@ -78,6 +80,22 @@ BeyondTrust's own threat research team, formally launched under this name in Aug
 **The core research stat, worth remembering:** Phantom Labs found a **466.7% year-over-year surge in AI agents operating inside enterprise environments** — many existing as shadow IT, inheriting entitlements that security teams can neither see nor control.
 
 **Their framing of the core problem, from a Phantom Labs researcher directly:** *"Agentic AI isn't a brand-new security domain at all — it's an accelerant poured onto a longstanding problem: identity sprawl and uncontrolled access."* Most AI deployments inherit access by default, with no visibility, boundaries, or safety checks — and the three questions most organizations cannot currently answer are: what can your agents access, what can they do, and who's governing any of it.
+
+---
+
+## BeyondTrust and Anthropic's Project Glasswing (Selected June 8, 2026)
+
+A genuinely significant connection, missed in an earlier version of this doc, that ties BeyondTrust directly into the same Mythos/Project Glasswing thread already covered elsewhere in this KB (`mythos-project-glasswing.md`).
+
+**What actually happened:** BeyondTrust announced it had been selected to join **Project Glasswing**, Anthropic's collaborative initiative using Claude Mythos Preview defensively to find and fix critical vulnerabilities across the software infrastructure the world's most essential systems depend on. This was part of an **expanded cohort** of organizations added to the program in June 2026, placing BeyondTrust among a group of vendors whose codebases maintain critical digital infrastructure across global commerce, government, healthcare, and essential services.
+
+**What BeyondTrust is actually doing with it:** using Claude Mythos Preview defensively to **identify, validate, and remediate potential software vulnerabilities across its own product portfolio, including the Pathfinder Platform itself** — applying the same frontier vulnerability-discovery capability described in `mythos-project-glasswing.md` directly to the code securing privilege for human, machine, and agentic identities.
+
+**The scale context, worth remembering:** at the time of BeyondTrust's inclusion, Project Glasswing had already helped program partners collectively surface more than **10,000 high and critical severity vulnerabilities** — a real, cited figure, not a hypothetical.
+
+**CTO Marc Maiffret's own framing, genuinely well put:** *"The threats ahead are bigger than any one vendor, and the response has to be shared... We are honored to stand with Anthropic and the other members of Project Glasswing, applying Mythos to our own code to further strengthen the security of the products our customers depend on, and doing our part in a defense no one can mount alone."*
+
+**Why this matters beyond just a nice partnership announcement:** BeyondTrust is a company whose entire business is protecting privileged access to critical systems. Being selected to apply the most capable known offensive-security AI model *defensively against its own codebase* is a meaningful trust signal — both for BeyondTrust's own security posture, and as a genuine, concrete example of the Mythos/Glasswing defensive model actually being deployed against a real, widely-used enterprise security product, not just discussed abstractly.
 
 ---
 
@@ -140,6 +158,8 @@ Worth being precise here, per multiple independent 2026 reviews, rather than ass
 - **The "not cloud-native" critique is real but is a tradeoff, not a quality gap** — BeyondTrust is genuinely best-in-class for endpoint privilege management and large legacy/hybrid enterprise estates, while genuinely slower and more DevOps-unfriendly than newer cloud-native entrants (Akeyless, Segura, C1, 1Password). Two different bets for two different buyers, not a simple better/worse
 - **Staying independent is now its own competitive advantage** — post CyberArk/Palo Alto, some enterprises specifically favor BeyondTrust's continued independence to avoid "integration risk" from a recently-acquired vendor
 - **Ownership is a live, open thread** — a potential multi-billion-dollar sale has been reported but not confirmed as of this writing, worth knowing before any conversation with the company
+- **BeyondTrust has Visibility with analytics, not true Observability** — Identity Security Insights correlates and scores existing signals; it doesn't causally reconstruct a live agent's step-by-step actions the way Origin or Lemma do. Same category as Cortex and Tanium/Ivanti on this specific axis
+- **BeyondTrust was selected for Anthropic's Project Glasswing (June 2026)** — applying Claude Mythos Preview defensively against its own codebase, including the Pathfinder Platform itself. A genuine, concrete trust signal, and a real connective thread to the Mythos content already in this KB (`mythos-project-glasswing.md`)
 
 ---
 
@@ -156,3 +176,4 @@ Worth being precise here, per multiple independent 2026 reviews, rather than ass
 | Compliance Stronghold — Best PAM Solutions 2026 | https://compliancestronghold.com/best-pam-solution/ |
 | IDM Express — 2026 SaaS PAM Solutions Comparison | https://www.idmexpress.com/post/unlocking-enterprise-security-the-ultimate-2026-saas-pam-solutions-comparison |
 | Tech Insider — CyberArk vs BeyondTrust vs Delinea PAM Compared | https://tech-insider.org/cyberark-vs-beyondtrust-vs-delinea-pam-2026/ |
+| BeyondTrust — Selected for Anthropic's Project Glasswing | https://www.beyondtrust.com/press/project-glasswing |
